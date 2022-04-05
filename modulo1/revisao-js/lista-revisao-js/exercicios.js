@@ -59,7 +59,15 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-    
+    const informacoesDoFilme = {
+        nome: 'O Diabo Veste Prada',
+        ano: 2006,
+        diretor: 'David Frankel',
+        atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+    } 
+    const atoresToString = informacoesDoFilme.atores.toString()
+    const atoresToStringComEspaco = atoresToString.replace(/,/g,", ")
+    return `Venha assistir ao filme ${informacoesDoFilme.nome}, de ${informacoesDoFilme.ano}, dirigido por ${informacoesDoFilme.diretor} e estrelado por ${atoresToStringComEspaco}.`
 }
 
 // EXERCÍCIO 12
