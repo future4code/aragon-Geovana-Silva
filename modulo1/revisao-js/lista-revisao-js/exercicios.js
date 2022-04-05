@@ -49,8 +49,16 @@ function retornaNPrimeirosPares(n) {
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
-}
+        const escaleno = ladoA === ladoB === ladoC
+        const isosceles = ladoA === ladoB || ladoB === ladoC || ladoA === ladoC
+        if (escaleno == true) {
+            console.log("Escaleno!")
+        } else if (isosceles == true) {
+            console.log("Isósceles!")
+        } else {
+            console.log("Equilátero!")
+        }
+    }
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
