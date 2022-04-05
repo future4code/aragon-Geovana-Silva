@@ -13,6 +13,15 @@ function retornaArrayInvertido(array) {
     return array.reverse()
 }
 
+//Desafio 02
+//function retornaArrayInvertido(array) {
+//    let meuArrayInvertido = array.map(function (item, indice, array){
+//        return meuArray[array.length - indice - 1];
+//    });
+//    console.log(array)
+//    return meuArrayInvertido
+//}
+
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
     return array.sort(function (a, b) {
