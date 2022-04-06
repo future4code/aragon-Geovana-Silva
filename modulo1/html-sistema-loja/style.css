@@ -1,0 +1,24 @@
+#Menu {
+    background: #C9DAFF;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#Topo {
+    text-align: center;
+}
+
+footer {
+    background-color: #C9DAFF;
+    text-align: center;
+}
+
+#Tabela {
+    background-color: #A7B6B1;
+    text-align: center;
+}
