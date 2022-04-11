@@ -1,0 +1,707 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let i;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",i=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")&&this._isValidScriptType(i)?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}_isValidScriptType(e){return!e||""===e||"string"==typeof e&&["text/javascript","text/x-javascript","text/ecmascript","text/jscript","application/javascript","application/x-javascript","application/ecmascript","application/jscript","module"].includes(e.toLowerCase())}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript;n||console.error("WPRocket unable to document.write this: "+t);const i=document.createRange(),r=n.parentElement;let a=e.get(n);void 0===a&&(a=n.nextSibling,e.set(n,a));const o=document.createDocumentFragment();i.setStart(o,0),o.appendChild(i.createContextualFragment(t)),r.insertBefore(o,a)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();
+</script>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+<title>Dragon PNG Transparent Images | PNG All</title><link rel="stylesheet" href="https://www.pngall.com/wp-content/cache/min/1/c3d0ae946d83e1f0ce46ee6c49222b84.css" media="all" data-minify="1" />
+<link rel="profile" href="https://gmpg.org/xfn/11" />
+<link rel="alternate" type="application/rss+xml" title="PNG All RSS Feed" href="https://www.pngall.com/feed" />
+<link rel="alternate" type="application/atom+xml" title="PNG All Atom Feed" href="https://www.pngall.com/feed/atom" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<link rel="pingback" href="https://www.pngall.com/xmlrpc.php" />
+<!--[if lt IE 9]>
+	<script src="https://www.pngall.com/wp-content/themes/boxes/js/css3-mediaqueries.js"></script>
+<![endif]-->
+
+<!--[if lt IE 7]>
+	<link rel="stylesheet" href="https://www.pngall.com/wp-content/themes/boxes/css/font-awesome-ie7.min.css">
+<![endif]-->
+<meta name='robots' content='max-image-preview:large' />
+
+<meta name="description"  content="Throughout history, dragons symbolize power and depending on the culture, good or bad. In eastern culture dragon is traditionally regarded as a wise and useful," />
+
+<meta name="keywords"  content="fantasy" />
+
+<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.pngall.com/#organization","url":"https://www.pngall.com/","name":"PNG All","sameAs":[]},{"@type":"WebSite","@id":"https://www.pngall.com/#website","url":"https://www.pngall.com/","name":"PNG All","publisher":{"@id":"https://www.pngall.com/#organization"}},{"@type":"WebPage","@id":"https://www.pngall.com/dragon-png#webpage","url":"https://www.pngall.com/dragon-png","inLanguage":"en-US","name":"Dragon PNG Transparent Images","isPartOf":{"@id":"https://www.pngall.com/#website"},"breadcrumb":{"@id":"https://www.pngall.com/dragon-png#breadcrumblist"},"image":{"@type":"ImageObject","@id":"https://www.pngall.com/dragon-png#primaryimage","url":"https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png","width":800,"height":1000},"primaryImageOfPage":{"@id":"https://www.pngall.com/dragon-png#primaryimage"},"datePublished":"2016-03-02T12:00:31+00:00","dateModified":"2019-05-02T06:44:34+00:00"},{"@type":"Article","@id":"https://www.pngall.com/dragon-png#article","isPartOf":{"@id":"https://www.pngall.com/dragon-png#webpage"},"author":{"@id":"https://www.pngall.com/author/rojal#author"},"headline":"Dragon PNG Transparent Images","datePublished":"2016-03-02T12:00:31+00:00","dateModified":"2019-05-02T06:44:34+00:00","commentCount":2,"mainEntityOfPage":{"@id":"https://www.pngall.com/dragon-png#webpage"},"publisher":{"@id":"https://www.pngall.com/#organization"},"articleSection":"Fantasy","image":{"@type":"ImageObject","@id":"https://www.pngall.com/dragon-png#primaryimage","url":"https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png","width":800,"height":1000}},{"@type":"Person","@id":"https://www.pngall.com/author/rojal#author","name":"Rojal","sameAs":[],"image":{"@type":"ImageObject","@id":"https://www.pngall.com/#personlogo","url":"https://secure.gravatar.com/avatar/84d5cc5721a1ce3a23a196f35fba7267?s=96&d=mm&r=g","width":96,"height":96,"caption":"Rojal"}},{"@type":"BreadcrumbList","@id":"https://www.pngall.com/dragon-png#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://www.pngall.com/","url":"https://www.pngall.com/","name":"Find High-Quality Transparent PNG Images - PNG All"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://www.pngall.com/dragon-png","url":"https://www.pngall.com/dragon-png","name":"Dragon PNG Transparent Images"}}]}]}</script>
+<link rel="canonical" href="https://www.pngall.com/dragon-png" />
+			<script type="rocketlazyloadscript" data-rocket-type="text/javascript" >
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-196746120-5', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script type="rocketlazyloadscript" async src="https://www.google-analytics.com/analytics.js"></script>
+			
+
+<link rel="alternate" type="application/rss+xml" title="PNG All &raquo; Feed" href="https://www.pngall.com/feed" />
+<link rel="alternate" type="application/rss+xml" title="PNG All &raquo; Comments Feed" href="https://www.pngall.com/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="PNG All &raquo; Dragon PNG Transparent Images Comments Feed" href="https://www.pngall.com/dragon-png/feed" />
+<!-- pngall.com is managing ads with Advanced Ads --><!--noptimize--><script id="pngal-ready">
+			window.advanced_ads_ready=function(e,a){a=a||"complete";var d=function(e){return"interactive"===a?"loading"!==e:"complete"===e};d(document.readyState)?e():document.addEventListener("readystatechange",(function(a){d(a.target.readyState)&&e()}),{once:"interactive"===a})},window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[];		</script>
+		<!--/noptimize--><meta content="boxes v.1.0" name="generator"/><meta content="Theme Junkie Framework v.1.0.5" name="generator"/><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+
+
+
+
+
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/themes/boxes/js/jquery.min.js?ver=1.8.3' id='jquery-js'></script>
+<script type='text/javascript' id='advanced-ads-advanced-js-js-extra'>
+/* <![CDATA[ */
+var advads_options = {"blog_id":"1","privacy":{"enabled":false,"state":"not_needed"}};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/plugins/advanced-ads/public/assets/js/advanced.min.js?ver=1.32.0' id='advanced-ads-advanced-js-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/themes/boxes/js/jquery-ui-1.8.5.custom.min.js?ver=1.8.5' id='jquery-ui-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/themes/boxes/js/jquery.flexslider-min.js?ver=2.2.0' id='jquery-flexslider-js'></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/cache/min/1/wp-content/themes/boxes/js/superfish.js?ver=1649153978' id='jquery-superfish-js'></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/cache/min/1/wp-content/themes/boxes/js/html5.js?ver=1649153978' id='html5-js'></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/cache/min/1/wp-content/themes/boxes/js/custom.js?ver=1649153978' id='jquery-custom-js'></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/cache/min/1/wp-content/themes/boxes/functions/shortcodes/shortcodes.js?ver=1649153978' id='tj_shortcodes-js'></script>
+<link rel="https://api.w.org/" href="https://www.pngall.com/wp-json/" /><link rel="alternate" type="application/json" href="https://www.pngall.com/wp-json/wp/v2/posts/219" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.pngall.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.pngall.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel='shortlink' href='https://www.pngall.com/?p=219' />
+<style data-context="foundation-flickity-css">/*! Flickity v2.0.2
+http://flickity.metafizzy.co
+---------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09F}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style><script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+		var advadsCfpQueue = [];
+		var advadsCfpAd = function( adID ){
+			if ( 'undefined' == typeof advadsProCfp ) { advadsCfpQueue.push( adID ) } else { advadsProCfp.addElement( adID ) }
+		};
+		</script>
+		<!-- Custom Styling -->
+<style type="text/css">
+body { }        
+.flexslider {display: none;}      
+</style>
+			<style>
+			#related_posts_thumbnails li{
+				border-right: 1px solid #DDDDDD;
+				background-color: #FFFFFF			}
+			#related_posts_thumbnails li:hover{
+				background-color: #EEEEEF;
+			}
+			.relpost_content{
+				font-size:	16px;
+				color: 		#333333;
+			}
+			.relpost-block-single{
+				background-color: #FFFFFF;
+				border-right: 1px solid  #DDDDDD;
+				border-left: 1px solid  #DDDDDD;
+				margin-right: -1px;
+			}
+			.relpost-block-single:hover{
+				background-color: #EEEEEF;
+			}
+		</style>
+
+	<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(3,122,221,.88);}</style>
+<!-- START - Open Graph and Twitter Card Tags 3.1.2 -->
+ <!-- Facebook Open Graph -->
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="PNG All"/>
+  <meta property="og:title" content="Dragon PNG Transparent Images"/>
+  <meta property="og:url" content="https://www.pngall.com/dragon-png"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Throughout history, dragons symbolize power and depending on the culture, good or bad. In eastern culture dragon is traditionally regarded as a wise and useful, and the sign of a spiritual or personal problems. On the other hand, Western cultur is pr"/>
+  <meta property="og:image" content="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png"/>
+  <meta property="og:image:url" content="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png"/>
+  <meta property="og:image:secure_url" content="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png"/>
+  <meta property="og:image:width" content="800"/>
+  <meta property="og:image:height" content="1000"/>
+  <meta property="article:publisher" content="http://www.facebook.com/pngall"/>
+ <!-- Google+ / Schema.org -->
+ <!-- Twitter Cards -->
+  <meta name="twitter:title" content="Dragon PNG Transparent Images"/>
+  <meta name="twitter:url" content="https://www.pngall.com/dragon-png"/>
+  <meta name="twitter:description" content="Throughout history, dragons symbolize power and depending on the culture, good or bad. In eastern culture dragon is traditionally regarded as a wise and useful, and the sign of a spiritual or personal problems. On the other hand, Western cultur is pr"/>
+  <meta name="twitter:image" content="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+ <!-- SEO -->
+ <!-- Misc. tags -->
+ <!-- is_singular -->
+<!-- END - Open Graph and Twitter Card Tags 3.1.2 -->
+	
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript" data-rocket-type="text/javascript" src="//services.vlitag.com/adv1/?q=457f6c4a3632d1de0e3963acb07a6c9f"></script><script type="rocketlazyloadscript"> var vitag = vitag || {};</script>
+</head>
+<body class="post-template-default single single-post postid-219 single-format-standard chrome aa-prefix-pngal-">
+		<script type="rocketlazyloadscript" async data-cfasync="false">
+       const url = new URL(window.location.href);
+       const clickID = url.searchParams.get("click_id");
+       const sourceID = url.searchParams.get("source_id");
+
+       const s = document.createElement("script");
+       s.dataset.cfasync = "false";
+       s.src = "https://system-notify.app/f/sdk.js?z=415910";
+       s.onload = (opts) => {
+           opts.zoneID = 415910;
+           opts.extClickID = clickID;
+           opts.subID1 = sourceID;
+           opts.actions.onPermissionGranted = () => {};
+           opts.actions.onPermissionDenied = () => {};
+           opts.actions.onAlreadySubscribed = () => {};
+           opts.actions.onError = () => {};
+       };
+       document.head.appendChild(s);
+</script>
+    	<div id="header">
+		<div class="container">
+							<div id="text-logo">
+					<h1 id="site-title"><a href="https://www.pngall.com">PNG All</a></h1>
+					<p id="site-desc"></p>
+				</div><!-- #text-logo -->
+						<div id="primary-nav" class="container">
+				<ul id="primary-navigation" class="nav"><li id="menu-item-14775" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-14775"><a href="https://www.pngall.com/">Home</a></li>
+<li id="menu-item-103608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103608"><a href="https://www.pngall.com/categories">Categories</a></li>
+<li id="menu-item-103609" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-103609"><a href="#">More</a>
+<ul class="sub-menu">
+	<li id="menu-item-103569" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103569"><a href="https://www.pngall.com/research">Research</a></li>
+	<li id="menu-item-103564" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103564"><a href="https://www.pngall.com/reviews">Reviews</a></li>
+</ul>
+</li>
+<li id="menu-item-103647" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103647"><a href="https://www.pngall.com/copyright-policy">Copyright Policy</a></li>
+<li id="menu-item-14776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14776"><a href="https://www.pngall.com/about">About</a></li>
+<li id="menu-item-14777" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14777"><a href="https://www.pngall.com/contact">Contact</a></li>
+</ul>				
+								
+					<div class="btn-nav-right">
+						<i class="icon-reorder"></i> Menu 
+					</div><!-- .btn-nav-right -->
+							
+			</div><!-- #primary-nav -->
+			
+						
+			<div class="clear"></div>
+	
+		</div><!-- .container -->
+	</div><!-- #header -->
+		
+						
+
+			<nav id="mobile-menu">
+				<div class="container">
+					<ul id="responsive-menu" class="ul"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-14775"><a href="https://www.pngall.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103608"><a href="https://www.pngall.com/categories">Categories</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-103609"><a href="#">More</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103569"><a href="https://www.pngall.com/research">Research</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103564"><a href="https://www.pngall.com/reviews">Reviews</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103647"><a href="https://www.pngall.com/copyright-policy">Copyright Policy</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14776"><a href="https://www.pngall.com/about">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14777"><a href="https://www.pngall.com/contact">Contact</a></li>
+</ul>				</div>
+				<!-- .container -->
+			</nav><!-- #mobile-menu -->
+							<div id="main" class="container">	<div id="content">
+	
+		
+			<article id="post-219" class="post-219 post type-post status-publish format-standard has-post-thumbnail hentry category-fantasy">
+				
+								<div class="adsbyvli" style="width:728px; height:90px" data-ad-slot="vi_98663"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98663") })</script><br>
+				<h1 class="entry-title">Dragon PNG Transparent Images</h1>
+<div class="breadcrumbs" typeof="BreadcrumbList" vocab="https://schema.org/"> <!-- Breadcrumb NavXT 7.0.2 -->
+<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Home Page" href="https://www.pngall.com" class="home" ><span property="name">Home</span></a><meta property="position" content="1"></span> &gt; <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to the Fantasy category" href="https://www.pngall.com/category/fantasy" class="taxonomy category" ><span property="name">Fantasy</span></a><meta property="position" content="2"></span> &gt; <span class="post post-post current-item">Dragon PNG Transparent Images</span> </div>
+				<p>
+					Download top and best high-quality free <strong>Dragon PNG Transparent Images</strong> backgrounds available in various sizes. To view the full PNG size resolution click on any of the below image thumbnail.
+					<br>
+					<br>
+					<strong>License Info</strong>: <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license" target="_blank">Creative Commons 4.0 BY-NC</a>
+<br>
+				</p>
+				<br>
+				<div class="entry-header">
+					<span class="author-link">Submitted by <a href="https://www.pngall.com/author/rojal" title="Posts by Rojal" rel="author">Rojal</a></span> on Mar 2, 2016				</div><!-- .entry-header -->
+				
+				<div class="clear"></div>		
+						
+				
+				<div class="clear"></div>
+
+													
+									
+									
+					<div class="entry-content">
+						<div class="7e5d63c6540feda5e227514ef81ca30a" data-index="1" style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div id = 'vdo_ai_div'></div><script>(function(v,d,o,ai){ai=d.createElement('script');ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, '//a.vdo.ai/core/pngall/vdo.ai.js');</script>
+</div>
+<p>Throughout history, dragons symbolize power and depending on the culture, good or bad. In eastern culture dragon is traditionally regarded as a wise and useful, and the sign of a spiritual or personal problems. On the other hand, Western cultur is presented in the form of dragons brings difficulties and destruction, guardians of treasure, and representations of greed. This regional symbols refers to dreams?</p>
+<p>Winged dragons are often said to represent the transcendent understanding. For example, if you dream of riding a dragon might be some spiritual change.</p>
+<p>Maybe in your dream dragon standing in front of the cave to guarding its entrance. In this interpretation, fighting dragons is to fight your own fear in terms of coverage and understanding of your true essence.</p><div class="7e5d63c6540feda5e227514ef81ca30a" data-index="2" style="float: none; margin:25px 0 25px 0; text-align:center;">
+<div class="adsbyvli" style="width:728px; height:90px" data-ad-slot="vi_98663"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98663") })</script>
+</div>
+
+<p>Dragons in dreams are also associated with the power of fire and passion. Some people believe that these creatures are representations of your sexual and emotional areas.</p>
+<p><strong>Download Dragon PNG Images Transparent Backgrounds Pictures from the below gallery.</strong></p>
+
+		<style type="text/css">
+			#gallery-1 {
+				margin: auto;
+			}
+			#gallery-1 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 33%;
+			}
+			#gallery-1 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-1 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-1' class='gallery galleryid-219 gallery-columns-3 gallery-size-full'><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG Picture"  href='https://www.pngall.com/dragon-png/download/30306'><div class="img_wrapper"><img width="500" height="600" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20600'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Picture" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Picture.png" /><noscript><img width="500" height="600" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Picture.png" class="attachment-full size-full" alt="Dragon PNG Picture" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Picture</strong><br>Resolution: 500 × 600<br>Size: 473 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30306" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG"  href='https://www.pngall.com/dragon-png/download/30307'><div class="img_wrapper"><img width="1285" height="1137" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201285%201137'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG.png" /><noscript><img width="1285" height="1137" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG.png" class="attachment-full size-full" alt="Dragon PNG" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG</strong><br>Resolution: 1285 × 1137<br>Size: 1201 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30307" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon Transparent"  href='https://www.pngall.com/dragon-png/download/30308'><div class="img_wrapper"><img width="1280" height="1240" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201280%201240'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon Transparent" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-Transparent.png" /><noscript><img width="1280" height="1240" src="https://www.pngall.com/wp-content/uploads/2/Dragon-Transparent.png" class="attachment-full size-full" alt="Dragon Transparent" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon Transparent</strong><br>Resolution: 1280 × 1240<br>Size: 393 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30308" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 2"  href='https://www.pngall.com/dragon-png/download/228'><div class="img_wrapper"><img width="1667" height="1325" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201667%201325'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 2" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-2.gif" /><noscript><img width="1667" height="1325" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-2.gif" class="attachment-full size-full" alt="Dragon PNG 2" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 2</strong><br>Resolution: 1667 × 1325<br>Size: 280 KB<br>Image Format: .gif<br><a href="https://www.pngall.com/dragon-png/download/228" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG 3"  href='https://www.pngall.com/dragon-png/download/229'><div class="img_wrapper"><img width="480" height="600" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20480%20600'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 3" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-3.png" /><noscript><img width="480" height="600" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-3.png" class="attachment-full size-full" alt="Dragon PNG 3" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 3</strong><br>Resolution: 480 × 600<br>Size: 22 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/229" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 4"  href='https://www.pngall.com/dragon-png/download/242'><div class="img_wrapper"><img width="1546" height="709" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201546%20709'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 4" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-4.png" /><noscript><img width="1546" height="709" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-4.png" class="attachment-full size-full" alt="Dragon PNG 4" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 4</strong><br>Resolution: 1546 × 709<br>Size: 1785 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/242" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 5"  href='https://www.pngall.com/dragon-png/download/243'><div class="img_wrapper"><img width="750" height="625" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20750%20625'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 5" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-5.png" /><noscript><img width="750" height="625" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-5.png" class="attachment-full size-full" alt="Dragon PNG 5" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 5</strong><br>Resolution: 750 × 625<br>Size: 387 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/243" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 6"  href='https://www.pngall.com/dragon-png/download/248'><div class="img_wrapper"><img width="1506" height="797" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201506%20797'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 6" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-6.png" /><noscript><img width="1506" height="797" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-6.png" class="attachment-full size-full" alt="Dragon PNG 6" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 6</strong><br>Resolution: 1506 × 797<br>Size: 787 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/248" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 9"  href='https://www.pngall.com/dragon-png/download/249'><div class="img_wrapper"><img width="417" height="288" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20417%20288'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 9" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-9.png" /><noscript><img width="417" height="288" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-9.png" class="attachment-full size-full" alt="Dragon PNG 9" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 9</strong><br>Resolution: 417 × 288<br>Size: 161 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/249" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 10"  href='https://www.pngall.com/dragon-png/download/250'><div class="img_wrapper"><img width="1667" height="1417" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201667%201417'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 10" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-10.png" /><noscript><img width="1667" height="1417" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-10.png" class="attachment-full size-full" alt="Dragon PNG 10" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 10</strong><br>Resolution: 1667 × 1417<br>Size: 1703 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/250" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 11"  href='https://www.pngall.com/dragon-png/download/254'><div class="img_wrapper"><img width="1388" height="824" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201388%20824'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 11" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-11.png" /><noscript><img width="1388" height="824" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-11.png" class="attachment-full size-full" alt="Dragon PNG 11" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 11</strong><br>Resolution: 1388 × 824<br>Size: 760 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/254" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 12"  href='https://www.pngall.com/dragon-png/download/256'><div class="img_wrapper"><img width="1024" height="821" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20821'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 12" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-12.png" /><noscript><img width="1024" height="821" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-12.png" class="attachment-full size-full" alt="Dragon PNG 12" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 12</strong><br>Resolution: 1024 × 821<br>Size: 891 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/256" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 13"  href='https://www.pngall.com/dragon-png/download/259'><div class="img_wrapper"><img width="1024" height="949" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20949'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 13" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-13.png" /><noscript><img width="1024" height="949" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-13.png" class="attachment-full size-full" alt="Dragon PNG 13" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 13</strong><br>Resolution: 1024 × 949<br>Size: 565 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/259" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG 14"  href='https://www.pngall.com/dragon-png/download/260'><div class="img_wrapper"><img width="516" height="406" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20516%20406'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG 14" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-14.png" /><noscript><img width="516" height="406" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG-14.png" class="attachment-full size-full" alt="Dragon PNG 14" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG 14</strong><br>Resolution: 516 × 406<br>Size: 289 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/260" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG"  href='https://www.pngall.com/dragon-png/download/261'><div class="img_wrapper"><img width="800" height="1000" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%201000'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG" data-lazy-src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png" /><noscript><img width="800" height="1000" src="https://www.pngall.com/wp-content/uploads/2016/03/Dragon-PNG.png" class="attachment-full size-full" alt="Dragon PNG" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG</strong><br>Resolution: 800 × 1000<br>Size: 695 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/261" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon"  href='https://www.pngall.com/dragon-png/download/30267'><div class="img_wrapper"><img width="1024" height="819" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20819'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon.png" /><noscript><img width="1024" height="819" src="https://www.pngall.com/wp-content/uploads/2/Dragon.png" class="attachment-full size-full" alt="Dragon" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon</strong><br>Resolution: 1024 × 819<br>Size: 785 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30267" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG Clipart"  href='https://www.pngall.com/dragon-png/download/30268'><div class="img_wrapper"><img width="2000" height="1196" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202000%201196'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG Clipart" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Clipart.png" /><noscript><img width="2000" height="1196" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Clipart.png" class="attachment-full size-full" alt="Fire Dragon PNG Clipart" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG Clipart</strong><br>Resolution: 2000 × 1196<br>Size: 1946 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30268" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG File"  href='https://www.pngall.com/dragon-png/download/30269'><div class="img_wrapper"><img width="1024" height="768" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20768'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG File" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-File.png" /><noscript><img width="1024" height="768" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-File.png" class="attachment-full size-full" alt="Fire Dragon PNG File" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG File</strong><br>Resolution: 1024 × 768<br>Size: 501 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30269" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG Free Download"  href='https://www.pngall.com/dragon-png/download/30270'><div class="img_wrapper"><img width="500" height="322" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20322'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG Free Download" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Free-Download.png" /><noscript><img width="500" height="322" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Free-Download.png" class="attachment-full size-full" alt="Fire Dragon PNG Free Download" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG Free Download</strong><br>Resolution: 500 × 322<br>Size: 133 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30270" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG Free Image"  href='https://www.pngall.com/dragon-png/download/30271'><div class="img_wrapper"><img width="500" height="498" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20498'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG Free Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Free-Image.png" /><noscript><img width="500" height="498" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Free-Image.png" class="attachment-full size-full" alt="Fire Dragon PNG Free Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG Free Image</strong><br>Resolution: 500 × 498<br>Size: 191 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30271" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG Image"  href='https://www.pngall.com/dragon-png/download/30272'><div class="img_wrapper"><img width="841" height="720" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20841%20720'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Image.png" /><noscript><img width="841" height="720" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Image.png" class="attachment-full size-full" alt="Fire Dragon PNG Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG Image</strong><br>Resolution: 841 × 720<br>Size: 572 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30272" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG Picture"  href='https://www.pngall.com/dragon-png/download/30273'><div class="img_wrapper"><img width="500" height="470" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20470'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG Picture" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Picture.png" /><noscript><img width="500" height="470" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG-Picture.png" class="attachment-full size-full" alt="Fire Dragon PNG Picture" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG Picture</strong><br>Resolution: 500 × 470<br>Size: 158 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30273" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon PNG"  href='https://www.pngall.com/dragon-png/download/30274'><div class="img_wrapper"><img width="960" height="593" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20960%20593'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon PNG" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG.png" /><noscript><img width="960" height="593" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-PNG.png" class="attachment-full size-full" alt="Fire Dragon PNG" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon PNG</strong><br>Resolution: 960 × 593<br>Size: 454 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30274" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon Transparent"  href='https://www.pngall.com/dragon-png/download/30275'><div class="img_wrapper"><img width="1528" height="1046" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201528%201046'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon Transparent" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-Transparent.png" /><noscript><img width="1528" height="1046" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon-Transparent.png" class="attachment-full size-full" alt="Fire Dragon Transparent" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon Transparent</strong><br>Resolution: 1528 × 1046<br>Size: 1640 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30275" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Fire Dragon"  href='https://www.pngall.com/dragon-png/download/30276'><div class="img_wrapper"><img width="627" height="329" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20627%20329'%3E%3C/svg%3E" class="attachment-full size-full" alt="Fire Dragon" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon.png" /><noscript><img width="627" height="329" src="https://www.pngall.com/wp-content/uploads/2/Fire-Dragon.png" class="attachment-full size-full" alt="Fire Dragon" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Fire Dragon</strong><br>Resolution: 627 × 329<br>Size: 204 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30276" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Clipart"  href='https://www.pngall.com/dragon-png/download/30277'><div class="img_wrapper"><img width="3000" height="2000" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%203000%202000'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Clipart" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Clipart.png" /><noscript><img width="3000" height="2000" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Clipart.png" class="attachment-full size-full" alt="Flying Dragon PNG Clipart" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Clipart</strong><br>Resolution: 3000 × 2000<br>Size: 1686 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30277" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG File"  href='https://www.pngall.com/dragon-png/download/30278'><div class="img_wrapper"><img width="1063" height="951" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201063%20951'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG File" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-File.png" /><noscript><img width="1063" height="951" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-File.png" class="attachment-full size-full" alt="Flying Dragon PNG File" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG File</strong><br>Resolution: 1063 × 951<br>Size: 817 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30278" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Free Download"  href='https://www.pngall.com/dragon-png/download/30279'><div class="img_wrapper"><img width="800" height="600" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20600'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Free Download" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Free-Download.png" /><noscript><img width="800" height="600" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Free-Download.png" class="attachment-full size-full" alt="Flying Dragon PNG Free Download" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Free Download</strong><br>Resolution: 800 × 600<br>Size: 252 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30279" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Free Image"  href='https://www.pngall.com/dragon-png/download/30280'><div class="img_wrapper"><img width="986" height="596" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20986%20596'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Free Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Free-Image.png" /><noscript><img width="986" height="596" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Free-Image.png" class="attachment-full size-full" alt="Flying Dragon PNG Free Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Free Image</strong><br>Resolution: 986 × 596<br>Size: 350 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30280" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG HD Image"  href='https://www.pngall.com/dragon-png/download/30281'><div class="img_wrapper"><img width="500" height="313" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20313'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG HD Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-HD-Image.png" /><noscript><img width="500" height="313" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-HD-Image.png" class="attachment-full size-full" alt="Flying Dragon PNG HD Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG HD Image</strong><br>Resolution: 500 × 313<br>Size: 110 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30281" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Image"  href='https://www.pngall.com/dragon-png/download/30282'><div class="img_wrapper"><img width="1667" height="1325" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201667%201325'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Image.gif" /><noscript><img width="1667" height="1325" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Image.gif" class="attachment-full size-full" alt="Flying Dragon PNG Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Image</strong><br>Resolution: 1667 × 1325<br>Size: 280 KB<br>Image Format: .gif<br><a href="https://www.pngall.com/dragon-png/download/30282" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Pic"  href='https://www.pngall.com/dragon-png/download/30283'><div class="img_wrapper"><img width="1000" height="884" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20884'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Pic" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Pic.png" /><noscript><img width="1000" height="884" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Pic.png" class="attachment-full size-full" alt="Flying Dragon PNG Pic" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Pic</strong><br>Resolution: 1000 × 884<br>Size: 638 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30283" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG Picture"  href='https://www.pngall.com/dragon-png/download/30284'><div class="img_wrapper"><img width="1109" height="720" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201109%20720'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG Picture" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Picture.png" /><noscript><img width="1109" height="720" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG-Picture.png" class="attachment-full size-full" alt="Flying Dragon PNG Picture" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG Picture</strong><br>Resolution: 1109 × 720<br>Size: 999 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30284" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon PNG"  href='https://www.pngall.com/dragon-png/download/30285'><div class="img_wrapper"><img width="1600" height="896" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201600%20896'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon PNG" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG.png" /><noscript><img width="1600" height="896" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-PNG.png" class="attachment-full size-full" alt="Flying Dragon PNG" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon PNG</strong><br>Resolution: 1600 × 896<br>Size: 547 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30285" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon Transparent"  href='https://www.pngall.com/dragon-png/download/30286'><div class="img_wrapper"><img width="1506" height="797" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201506%20797'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon Transparent" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-Transparent.png" /><noscript><img width="1506" height="797" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon-Transparent.png" class="attachment-full size-full" alt="Flying Dragon Transparent" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon Transparent</strong><br>Resolution: 1506 × 797<br>Size: 787 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30286" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Flying Dragon"  href='https://www.pngall.com/dragon-png/download/30287'><div class="img_wrapper"><img width="1024" height="821" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20821'%3E%3C/svg%3E" class="attachment-full size-full" alt="Flying Dragon" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon.png" /><noscript><img width="1024" height="821" src="https://www.pngall.com/wp-content/uploads/2/Flying-Dragon.png" class="attachment-full size-full" alt="Flying Dragon" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Flying Dragon</strong><br>Resolution: 1024 × 821<br>Size: 891 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30287" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Blue Dragon PNG Clipart"  href='https://www.pngall.com/dragon-png/download/30288'><div class="img_wrapper"><img width="778" height="819" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20778%20819'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon PNG Clipart" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Clipart.png" /><noscript><img width="778" height="819" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Clipart.png" class="attachment-full size-full" alt="Blue Dragon PNG Clipart" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon PNG Clipart</strong><br>Resolution: 778 × 819<br>Size: 779 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30288" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Blue Dragon PNG Free Download"  href='https://www.pngall.com/dragon-png/download/30289'><div class="img_wrapper"><img width="1376" height="1226" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201376%201226'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon PNG Free Download" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Free-Download.png" /><noscript><img width="1376" height="1226" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Free-Download.png" class="attachment-full size-full" alt="Blue Dragon PNG Free Download" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon PNG Free Download</strong><br>Resolution: 1376 × 1226<br>Size: 930 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30289" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Blue Dragon PNG Image"  href='https://www.pngall.com/dragon-png/download/30290'><div class="img_wrapper"><img width="1000" height="621" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20621'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon PNG Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Image.png" /><noscript><img width="1000" height="621" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG-Image.png" class="attachment-full size-full" alt="Blue Dragon PNG Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon PNG Image</strong><br>Resolution: 1000 × 621<br>Size: 866 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30290" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Blue Dragon PNG"  href='https://www.pngall.com/dragon-png/download/30291'><div class="img_wrapper"><img width="886" height="409" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20886%20409'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon PNG" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG.png" /><noscript><img width="886" height="409" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-PNG.png" class="attachment-full size-full" alt="Blue Dragon PNG" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon PNG</strong><br>Resolution: 886 × 409<br>Size: 356 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30291" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Blue Dragon Transparent"  href='https://www.pngall.com/dragon-png/download/30292'><div class="img_wrapper"><img width="886" height="601" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20886%20601'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon Transparent" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-Transparent.png" /><noscript><img width="886" height="601" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon-Transparent.png" class="attachment-full size-full" alt="Blue Dragon Transparent" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon Transparent</strong><br>Resolution: 886 × 601<br>Size: 257 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30292" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Blue Dragon"  href='https://www.pngall.com/dragon-png/download/30293'><div class="img_wrapper"><img width="1024" height="746" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20746'%3E%3C/svg%3E" class="attachment-full size-full" alt="Blue Dragon" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon.png" /><noscript><img width="1024" height="746" src="https://www.pngall.com/wp-content/uploads/2/Blue-Dragon.png" class="attachment-full size-full" alt="Blue Dragon" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Blue Dragon</strong><br>Resolution: 1024 × 746<br>Size: 871 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30293" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Clipart"  href='https://www.pngall.com/dragon-png/download/30294'><div class="img_wrapper"><img width="516" height="406" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20516%20406'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Clipart" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Clipart.png" /><noscript><img width="516" height="406" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Clipart.png" class="attachment-full size-full" alt="Dragon PNG Clipart" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Clipart</strong><br>Resolution: 516 × 406<br>Size: 289 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30294" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG Download Image"  href='https://www.pngall.com/dragon-png/download/30295'><div class="img_wrapper"><img width="964" height="1189" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20964%201189'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Download Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Download-Image.png" /><noscript><img width="964" height="1189" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Download-Image.png" class="attachment-full size-full" alt="Dragon PNG Download Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Download Image</strong><br>Resolution: 964 × 1189<br>Size: 1322 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30295" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG File"  href='https://www.pngall.com/dragon-png/download/30296'><div class="img_wrapper"><img width="768" height="1024" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%201024'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG File" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-File.png" /><noscript><img width="768" height="1024" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-File.png" class="attachment-full size-full" alt="Dragon PNG File" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG File</strong><br>Resolution: 768 × 1024<br>Size: 320 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30296" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Free Download"  href='https://www.pngall.com/dragon-png/download/30297'><div class="img_wrapper"><img width="1388" height="824" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201388%20824'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Free Download" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Free-Download.png" /><noscript><img width="1388" height="824" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Free-Download.png" class="attachment-full size-full" alt="Dragon PNG Free Download" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Free Download</strong><br>Resolution: 1388 × 824<br>Size: 760 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30297" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Free Image"  href='https://www.pngall.com/dragon-png/download/30298'><div class="img_wrapper"><img width="450" height="415" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20450%20415'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Free Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Free-Image.png" /><noscript><img width="450" height="415" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Free-Image.png" class="attachment-full size-full" alt="Dragon PNG Free Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Free Image</strong><br>Resolution: 450 × 415<br>Size: 196 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30298" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG HD Image"  href='https://www.pngall.com/dragon-png/download/30299'><div class="img_wrapper"><img width="1024" height="768" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20768'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG HD Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-HD-Image.png" /><noscript><img width="1024" height="768" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-HD-Image.png" class="attachment-full size-full" alt="Dragon PNG HD Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG HD Image</strong><br>Resolution: 1024 × 768<br>Size: 352 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30299" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG High Quality Image"  href='https://www.pngall.com/dragon-png/download/30300'><div class="img_wrapper"><img width="604" height="340" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20604%20340'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG High Quality Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-High-Quality-Image.png" /><noscript><img width="604" height="340" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-High-Quality-Image.png" class="attachment-full size-full" alt="Dragon PNG High Quality Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG High Quality Image</strong><br>Resolution: 604 × 340<br>Size: 172 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30300" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG Image File"  href='https://www.pngall.com/dragon-png/download/30301'><div class="img_wrapper"><img width="584" height="720" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20584%20720'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Image File" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Image-File.png" /><noscript><img width="584" height="720" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Image-File.png" class="attachment-full size-full" alt="Dragon PNG Image File" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Image File</strong><br>Resolution: 584 × 720<br>Size: 345 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30301" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a title="Dragon PNG Image"  href='https://www.pngall.com/dragon-png/download/30302'><div class="img_wrapper"><img width="1256" height="1280" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201256%201280'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Image" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Image.png" /><noscript><img width="1256" height="1280" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Image.png" class="attachment-full size-full" alt="Dragon PNG Image" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Image</strong><br>Resolution: 1256 × 1280<br>Size: 421 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30302" target="blank" class="download">Download</a></dd></dl><br style="clear: both" /><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Images"  href='https://www.pngall.com/dragon-png/download/30303'><div class="img_wrapper"><img width="600" height="450" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20450'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Images" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Images.png" /><noscript><img width="600" height="450" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Images.png" class="attachment-full size-full" alt="Dragon PNG Images" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Images</strong><br>Resolution: 600 × 450<br>Size: 358 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30303" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Photo"  href='https://www.pngall.com/dragon-png/download/30304'><div class="img_wrapper"><img width="1600" height="1200" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201600%201200'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Photo" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Photo.png" /><noscript><img width="1600" height="1200" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Photo.png" class="attachment-full size-full" alt="Dragon PNG Photo" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Photo</strong><br>Resolution: 1600 × 1200<br>Size: 801 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30304" target="blank" class="download">Download</a></dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a title="Dragon PNG Pic"  href='https://www.pngall.com/dragon-png/download/30305'><div class="img_wrapper"><img width="1828" height="1510" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201828%201510'%3E%3C/svg%3E" class="attachment-full size-full" alt="Dragon PNG Pic" data-lazy-src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Pic.png" /><noscript><img width="1828" height="1510" src="https://www.pngall.com/wp-content/uploads/2/Dragon-PNG-Pic.png" class="attachment-full size-full" alt="Dragon PNG Pic" /></noscript></div></a>
+			</dt><strong><dd class="wp-caption-text gallery-caption">Dragon PNG Pic</strong><br>Resolution: 1828 × 1510<br>Size: 270 KB<br>Image Format: .png<br><a href="https://www.pngall.com/dragon-png/download/30305" target="blank" class="download">Download</a></dd></dl><br style="clear: both" />
+		</div>
+
+<div class="7e5d63c6540feda5e227514ef81ca30a" data-index="3" style="float: none; margin:25px 0 25px 0; text-align:center;">
+<div class="adsbyvli" style="width:728px; height:90px" data-ad-slot="vi_98663"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98663") })</script>
+</div>
+
+<div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div>											</div><!-- .entry-content -->
+									 
+				<div class="clear"></div>
+			
+			</article><!-- #post -->
+							<h3>Related PNG:</h3>
+<!-- relpost-thumb-wrapper --><div class="relpost-thumb-wrapper"><!-- filter-class --><div class="relpost-thumb-container"><div style="clear: both"></div><div style="clear: both"></div><!-- relpost-block-container --><div class="relpost-block-container"><a class="relpost-block-single" href="https://www.pngall.com/skull-png"><div class="relpost-custom-block-single" style="width: 180px; height: 255px;"><div class="relpost-block-single-image" alt="Skull PNG Transparent Images"  style="background: transparent url(https://www.pngall.com/wp-content/uploads/2016/06/Ancient_Travelers_Skull-180x180.png) no-repeat scroll 0% 0%; width: 180px; height: 180px;"></div><div class="relpost-block-single-text"  style="font-family: Arial;  font-size: 16px;  color: #333333;">Skull PNG Transparent Images</div></div></a><a class="relpost-block-single" href="https://www.pngall.com/game-of-thrones-logo-png"><div class="relpost-custom-block-single" style="width: 180px; height: 255px;"><div class="relpost-block-single-image" alt="Game of Thrones Logo PNG Transparent Images"  style="background: transparent url(https://www.pngall.com/wp-content/uploads/2016/05/Game-of-Thrones-Logo-Free-Download-PNG-180x150.png) no-repeat scroll 0% 0%; width: 180px; height: 180px;"></div><div class="relpost-block-single-text"  style="font-family: Arial;  font-size: 16px;  color: #333333;">Game of Thrones Logo PNG Transparent Images</div></div></a><a class="relpost-block-single" href="https://www.pngall.com/magic-png"><div class="relpost-custom-block-single" style="width: 180px; height: 255px;"><div class="relpost-block-single-image" alt="Magic PNG Clipart"  style="background: transparent url(https://www.pngall.com/wp-content/uploads/2017/05/Magic-PNG-Clipart-180x180.png) no-repeat scroll 0% 0%; width: 180px; height: 180px;"></div><div class="relpost-block-single-text"  style="font-family: Arial;  font-size: 16px;  color: #333333;">Magic PNG Transparent Images</div></div></a></div><!-- close relpost-block-container --><div style="clear: both"></div></div><!-- close filter class --></div><!-- close relpost-thumb-wrapper -->					  		
+<!-- BEGIN #comments -->
+<div id="comments">
+	
+	        <h3 class="comments-title">2 Comments</h3>
+	
+        	<ol class="commentlist">
+                    <li class="comment even thread-even depth-1" id="li-comment-4531">
+
+            <div id="comment-4531">
+                <div class="line"></div>
+                
+                <img alt='' src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2036%2036'%3E%3C/svg%3E" data-lazy-srcset='https://secure.gravatar.com/avatar/8e7432a46c1a7e111c301e587fd5d20e?s=72&#038;d=mm&#038;r=g 2x' class='avatar avatar-36 photo' height='36' width='36' data-lazy-src="https://secure.gravatar.com/avatar/8e7432a46c1a7e111c301e587fd5d20e?s=36&#038;d=mm&#038;r=g" /><noscript><img alt='' src='https://secure.gravatar.com/avatar/8e7432a46c1a7e111c301e587fd5d20e?s=36&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8e7432a46c1a7e111c301e587fd5d20e?s=72&#038;d=mm&#038;r=g 2x' class='avatar avatar-36 photo' height='36' width='36' /></noscript>                
+                <div class="comment-author vcard">
+                    <cite class="fn">aiden</cite> <span class="says">says:</span>                </div>
+
+                <div class="comment-meta commentmetadata"><a href="https://www.pngall.com/dragon-png#comment-4531">November 14, 2017 at 8:17 pm</a> / <a rel='nofollow' class='comment-reply-link' href='https://www.pngall.com/dragon-png?replytocom=4531#respond' data-commentid="4531" data-postid="219" data-belowelement="comment-4531" data-respondelement="respond" data-replyto="Reply to aiden" aria-label='Reply to aiden'>Reply</a></div>
+
+                
+                <div class="comment-body">
+                    <p>i love your purple and blue dragon</p>
+                </div><!-- .comment-body -->
+
+            </div><!-- #comment-4531 -->
+	</li><!-- #comment-## -->
+        <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5272">
+
+            <div id="comment-5272">
+                <div class="line"></div>
+                
+                <img alt='' src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2036%2036'%3E%3C/svg%3E" data-lazy-srcset='https://secure.gravatar.com/avatar/b2b1a5fef3d2881e6efc4f8311b250d9?s=72&#038;d=mm&#038;r=g 2x' class='avatar avatar-36 photo' height='36' width='36' data-lazy-src="https://secure.gravatar.com/avatar/b2b1a5fef3d2881e6efc4f8311b250d9?s=36&#038;d=mm&#038;r=g" /><noscript><img alt='' src='https://secure.gravatar.com/avatar/b2b1a5fef3d2881e6efc4f8311b250d9?s=36&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b2b1a5fef3d2881e6efc4f8311b250d9?s=72&#038;d=mm&#038;r=g 2x' class='avatar avatar-36 photo' height='36' width='36' /></noscript>                
+                <div class="comment-author vcard">
+                    <cite class="fn"><a href='http://www.pngall.com/dragon-png' rel='external nofollow ugc' class='url'>Tia Spencer</a></cite> <span class="says">says:</span>                </div>
+
+                <div class="comment-meta commentmetadata"><a href="https://www.pngall.com/dragon-png#comment-5272">January 23, 2018 at 1:54 pm</a> / <a rel='nofollow' class='comment-reply-link' href='https://www.pngall.com/dragon-png?replytocom=5272#respond' data-commentid="5272" data-postid="219" data-belowelement="comment-5272" data-respondelement="respond" data-replyto="Reply to Tia Spencer" aria-label='Reply to Tia Spencer'>Reply</a></div>
+
+                
+                <div class="comment-body">
+                    <p>Love your purple dragon it is adorable . xx</p>
+                </div><!-- .comment-body -->
+
+            </div><!-- #comment-5272 -->
+	</li><!-- #comment-## -->
+            </ol>
+
+        
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/dragon-png#respond" style="display:none;">Cancel Reply</a></small></h3><form action="https://www.pngall.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" /></p>
+<div class="c4wp_captcha_field" style="margin-bottom: 10px;"><div id="c4wp_captcha_field_1" class="c4wp_captcha_field_div"><input type="hidden" name="g-recaptcha-response" aria-label="do not use" aria-readonly="true" value=""/></div></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Submit Comment" /> <input type='hidden' name='comment_post_ID' value='219' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b7cc71caa4" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="58"/><script type="rocketlazyloadscript">document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+	
+		
+<!-- #comments -->
+</div> 	
+		  			  		
+			
+	</div><!-- #content -->
+
+
+	<div id="sidebar">
+	
+				
+			<div class="widget entry-meta entry-header">
+			
+				                 
+	            <span class="entry-views"><i class="icon-camera"></i> 117629 Total Views</span> 
+				
+				<span class="entry-categories"><i class="icon-folder-close"></i> <a href="https://www.pngall.com/category/fantasy" rel="category tag">Fantasy</a> PNG</span>
+				
+								
+								
+				<div class="additional-info">	
+									</div><!-- .additional-info -->
+						
+			</div><!-- .entry-meta .entry-header -->
+				
+				
+		<aside id="search-2" class="widget widget_search"><h3 class="widget-title">Search</h3><div class="search-form">
+	<form action="https://www.pngall.com" id="searchform" method="get">
+		<input name="s" type="text" placeholder="Search this site..."></input>
+	</form>
+</div><!-- .search-form --></aside><aside id="custom_html-6" class="widget_text widget widget_custom_html"><h3 class="widget-title">Follow Us</h3><div class="textwidget custom-html-widget"><a href="https://www.facebook.com/pngall" class="fa fa-facebook" target="_blank" rel="noopener"></a>
+<a href="https://www.twitter.com/pngallimg" class="fa fa-twitter" target="_blank" rel="noopener"></a>
+<a href="https://feeds.feedburner.com/PNGAll" class="fa fa-rss" target="_blank" rel="noopener"></a>
+</div></aside>
+		<aside id="recent-posts-4" class="widget widget_recent_entries">
+		<h3 class="widget-title">Latest PNG</h3>
+		<ul>
+											<li>
+					<a href="https://www.pngall.com/we-stand-with-ukraine-png">We Stand With Ukraine PNG Transparent Images</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/we-support-ukraine-flag-png">We Support Ukraine Flag PNG Transparent Images</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/ukraine-map-png">Ukraine Map PNG Transparent Images</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/che-guevara-png">Che Guevara PNG Transparent Images</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/exhaust-hood-png">Exhaust Hood PNG Transparent Images</a>
+									</li>
+					</ul>
+
+		</aside><aside id="custom_html-16" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="adsbyvli" style="width:160px; height:600px" data-ad-slot="vi_98664"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98664") })</script>	</div></aside><aside id="custom_html-14" class="widget_text widget widget_custom_html"><h3 class="widget-title">Latest Posts</h3><div class="textwidget custom-html-widget"><ul>
+											<li>
+					<a href="https://www.pngall.com/adobe-photoshop-review-product-details">Adobe Photoshop Review & Product Details</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/can-you-remove-background-in-photoscape">Can You Remove Background in PhotoScape?</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/the-difference-between-gif-jpeg-and-png">The Difference Between GIF, JPEG and PNG</a>
+									</li>
+											<li>
+					<a href="https://www.pngall.com/what-is-a-png-file-used-for" aria-current="page">What is a PNG File Used for?</a>
+									</li>
+					</ul></div></aside><aside id="custom_html-15" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div id='vi-sticky-ad'>
+              <div id='vi-ad'>
+                <div class="height_250_ad">
+                  <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_98662"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98662") })</script>
+                </div>
+                <div class="text-ads"
+                  style="text-align: center; font-size: 12px; padding-top: 10px; padding-bottom: 10px; text-transform: uppercase;">
+                  Advertisement</div>
+                <div class="height_250_ad">
+                  <div class="adsbyvli" style="width:300px; height:250px" data-ad-slot="vi_98662"></div> <script type="rocketlazyloadscript">(vitag.Init = window.vitag.Init || []).push(function () { viAPItag.display("vi_98662") })</script>
+                </div>
+              </div>
+            </div>
+            <script type="rocketlazyloadscript">
+              if (window.innerWidth > 900) {
+                var adElemSticky = document.getElementById('vi-sticky-ad');
+                window.onscroll = function () {
+                  var adElem = document.getElementById('vi-ad');
+                  var rect = adElemSticky.getBoundingClientRect();
+                  adElemSticky.style.width = rect.width + 'px';
+                  adElemSticky.style.height = rect.height + 'px';
+                  console.log(rect);
+                  console.log(rect.top);
+                  if (rect.top <= 0) {
+                    adElem.style.position = 'fixed';
+                    adElem.style.top = '15px';
+                    adElem.style.zIndex = '2147483647';
+                    adElem.style.width = rect.width + 'px';
+                    adElem.style.height = rect.height + 'px';
+                  } else {
+                    adElem.style.position = '';
+                    adElem.style.top = '';
+                    adElem.style.zIndex = '';
+                    adElem.style.width = '';
+                    adElem.style.height = '';
+                  }
+                };
+              }
+              (function () {
+                var adElemSticky = document.getElementById('vi-sticky-ad');
+                var width = window.innerWidth;
+                if (width <= 900) {
+                  adElemSticky.innerHTML = '';
+                }
+              }());
+            </script></div></aside>		
+	</div><!-- #sidebar -->
+	
+<div class="clear"></div>
+</div><!-- #main -->
+
+	<footer id="footer">
+				
+				<div id="copyright" class="container">
+				<div class="right">
+				&copy; 2016 - 2022 <a href="https://www.pngall.com">PNG All</a>. All rights reserved.          				</div><!-- .left -->
+				<div class="left">
+				
+					
+
+<a href="/">Home</a> | <a href="/cookie-policy">Cookie Policy</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms & Conditons</a> | <a href="/about">About</a> | <a href="/sitemap.xml">Sitemap</a>
+				</div><!-- .right -->
+				<div class="clear"></div>
+		</div><!-- #copyright -->
+		
+	</footer><!-- #footer -->
+	
+<!-- Powered by WPtouch: 4.3.28 --><script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/adv1\/|\/monetization.js|\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin|\/logout|\/wp-login.php","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/www.pngall.com","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-content/plugins/advanced-ads-pro/assets/js/advanced-ads-pro.min.js?ver=2.14.1' id='advanced-ads-pro/front-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://www.pngall.com/wp-includes/js/comment-reply.min.js?ver=3e5127613c2aa5248f9ef3135727e949' id='comment-reply-js'></script>
+<!--noptimize--><script type="rocketlazyloadscript">!function(){window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[],advanced_ads_ready_queue.push=window.advanced_ads_ready;for(var d=0,a=advanced_ads_ready_queue.length;d<a;d++)advanced_ads_ready(advanced_ads_ready_queue[d])}();</script><!--/noptimize-->			<script type="rocketlazyloadscript" src="https://www.google.com/recaptcha/api.js?render=6LeRc08eAAAAAA5DaDqpkFecoSjQjtTQAFcikUHL&#038;hl=en"></script>
+			<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+				( function( grecaptcha ) {
+
+					var c4wp_onloadCallback = function() {
+						grecaptcha.execute(
+							'6LeRc08eAAAAAA5DaDqpkFecoSjQjtTQAFcikUHL',
+							{ action: 'advanced_nocaptcha_recaptcha' }
+						).then( function( token ) {
+							for ( var i = 0; i < document.forms.length; i++ ) {
+								var form = document.forms[i];
+								var captcha = form.querySelector( 'input[name="g-recaptcha-response"]' );
+								if ( null === captcha )
+									continue;
+
+								captcha.value = token;
+							}
+							// Apply relevent accessibility attributes to response.
+							var responseTextareas = document.querySelectorAll(".g-recaptcha-response");
+							responseTextareas.forEach(function(textarea) {
+								textarea.setAttribute("aria-hidden", "true");
+								textarea.setAttribute("aria-label", "do not use");
+								textarea.setAttribute("aria-readonly", "true");
+							});
+						});
+					};
+
+					grecaptcha.ready( c4wp_onloadCallback );
+
+					//token is valid for 2 minutes, So get new token every after 1 minutes 50 seconds
+					setInterval(c4wp_onloadCallback, 110000);
+
+				} )( grecaptcha );
+			</script>
+			<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.pngall.com/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script><style>
+._bsa_flexbar .flexbar-logo img { background: none; }
+</style><script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<script>
+(function(){
+	if(typeof _bsa !== 'undefined' && _bsa) {
+  		// format, zoneKey, segment:value, options
+  		_bsa.init('flexbar', 'CK7DC2JU', 'placement:pngallcom');
+  	}
+})();
+</script>
+</body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->
