@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header div a {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#ButtonLogin {
+    text-align: center;
+    padding: 10px;
+}
+
+header {
+    background-color:mediumvioletred;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.menu-lateral {
+    background-color: #f2d0e0;
+    padding: 20px;
+}
+.menu-lateral a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+main {
+    display: flex;
+    width: 100vw;
+}
+
+.catalogo {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    box-shadow: darkgray;
+    text-align: center;
+}
+.catalogo div {
+    padding: 15px;
+    background-color: white;
+}
+.catalogo div p {
+    margin-top: 5px;
+    text-align: center;
+}
+#BoloCatalogo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+footer {
+    background-color:mediumvioletred;
+    padding: 20px;
+    text-align: center;
+}
