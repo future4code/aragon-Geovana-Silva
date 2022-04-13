@@ -60,7 +60,7 @@ main {
     width: 100%;
     padding: 5px;
     text-align: center;  
-}.nav-video video{
+}.nav-video video {
     width: 100%;
 }
 
@@ -104,4 +104,10 @@ footer {
     height: 30px;
     text-align: center;
     margin: 10px;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    main {
+        grid-template-columns: 1fr;
+    }
 }
