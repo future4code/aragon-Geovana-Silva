@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: bisque;
+}
+
+
+header {
+    background-color: brown;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 0 15px;
+}
+
+header img {
+    width: 40px;
+}
+
+header h1 {
+    color: white;
+    padding: 10px;
+    width: 50%;
+    font-size: 30px;
+}
+
+header input {
+    width: 30%;
+    margin-left: auto;
+}
+
+header button {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+} header button img {
+    width: 10px;
+    height: 10px;
+}
+
+main {
+    margin:5px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3px; 
+}
+
+.nav-video {
+    width: 100%;
+    padding: 5px;
+    text-align: center;  
+}.nav-video video {
+    width: 100%;
+}
+
+footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    line-height: 5vh;
+    background-color: brown;
+} p {
+    text-align: center;
+    color: white
+} #boldFooter {
+    font-weight: bold;
+}
+
+
+
+
+
+.main-video {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.main-video h3 {
+    text-align: center;
+    margin: 10px;
+}
+
+.main-video video {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main-video button {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
