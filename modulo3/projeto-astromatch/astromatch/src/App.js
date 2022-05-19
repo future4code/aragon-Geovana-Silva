@@ -32,7 +32,6 @@ return (
           irParaPaginaPerfil={irParaPaginaPerfil}
           irParaPaginaMatches={irParaPaginaMatches}
       />
-      <hr />
       <main>
           {paginaAtual()}
       </main>
