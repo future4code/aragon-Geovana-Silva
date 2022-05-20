@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CardPerfil = styled.div`
     text-align: center;
@@ -8,6 +10,14 @@ const CardPerfil = styled.div`
         color: white;
     }
 `
+
+const CardPerfil2 = styled.div`
+    text-align: center;
+    h3 {
+        color: white;
+    }
+`
+
 const Imagem = styled.div`
     img {
         border-radius: 10px;
@@ -130,6 +140,9 @@ const escolherPerfil = (idPerfil, escolha) => {
     axios
         .post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/geovana-oliveira-aragon/choose-person", body)
         .then((res) => {
+            if (body.choice && res.data.isMatch) {
+                alert('🔥 Match!')
+            };
             getPerfil()
         })
         .catch((err) => {
@@ -149,7 +162,7 @@ const resetarPerfil = () => {
         })
 }
 
-const cardPerfil = profile && (
+const cardPerfil = profile ? (
     <CardPerfil>
     <figure>
         <Imagem>
@@ -159,24 +172,30 @@ const cardPerfil = profile && (
         <p> {profile.bio} </p>
         <Botoes>
         <BotaoLike>
-        <button onClick={() => {escolherPerfil(profile.id, true)}}><img src="https://www.picng.com/upload/heart/png_heart_31626.png" alt="like"></img> </button>
+        <button onClick={() => {escolherPerfil(profile.id, true)}}><img src="https://www.picng.com/upload/heart/png_heart_31626.png" alt="like"></img></button>
         </BotaoLike>
         <BotaoDislike>
         <button onClick={() => {escolherPerfil(profile.id, false)}}><img src="https://atende.sptrans.com.br/imagens/IconesUteis/Wrong.png" alt="dislike"></img></button>
         </BotaoDislike>
         </Botoes>
-    </figure>
+    </figure> 
     </CardPerfil>
-)
+):(
+    <CardPerfil2>
+    <div>
+    <h3> 🙁 Acabaram os matches! Clique em 'Resetar' para reiniciar. </h3>
+    <BotaoResetar>
+        <button onClick={() => {resetarPerfil()}}> Resetar </button>
+    </BotaoResetar>
+    </div>
+    </CardPerfil2>
+    )
 
-    return (
+return (
         <SubCardPerfil>
         <div>
             {cardPerfil}
-            <BotaoResetar>
-            <button onClick={() => {resetarPerfil()}}> Resetar </button>
-            </BotaoResetar>
         </div>
         </SubCardPerfil>
-    ) //Após eu inserir esse botão acima, minha página começou agir estranhamente.
+    )
 }
