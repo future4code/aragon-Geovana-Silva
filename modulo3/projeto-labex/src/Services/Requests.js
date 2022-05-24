@@ -1,0 +1,20 @@
+import axios from 'axios';
+import { irParaAdm } from '../Routes/Coordinator';
+
+export const requesicaoLogin = (email, password, navigate) => {
+    const body = {
+        email: email,
+        password: password
+    }
+    axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/geovana-oliveira-aragon/login",
+    body)
+    .then((res) => {
+        localStorage.setItem("token", res.data.token)
+        alert("Login efetuado com sucesso!😍")
+        irParaAdm(navigate)
+    })
+    .catch((err) => {
+        alert("Erro! Tente novamente!😔")
+        console.log(err.message)
+    })
+}

@@ -1,10 +1,27 @@
-import Header from '../components/Header';
+import Header from '../Components/Header';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { irParaHome } from '../Routes/Coordinator';
+import styled from "styled-components";
+
+const Main = styled.div`
+    text-align: center;
+`
 
 export default function Adm() {
-    return(
+    const navigate = useNavigate()
+
+useEffect(() => {
+    if (!localStorage.getItem("token")) {
+        irParaHome(navigate);
+    }
+}, [])
+
+    return( 
         <div>
-            <Header paginaAtual={"adm-page"}/>
+            <Header/>
             <hr/>
+            <Main>
             <main>
                 <section>
                     <h3> Crie uma nova viagem🛬</h3>
@@ -14,6 +31,7 @@ export default function Adm() {
                     <h3> Lista de viagens💺 </h3>
                 </section>
             </main>
+            </Main>
         </div>
     )
 }
