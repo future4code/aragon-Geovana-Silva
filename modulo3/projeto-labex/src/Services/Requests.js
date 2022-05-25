@@ -15,6 +15,22 @@ export const requesicaoLogin = (email, password, navigate) => {
     })
     .catch((err) => {
         alert("Erro! Tente novamente!😔")
-        console.log(err.message)
+    })
+}
+
+export const deletarViagem = (viagemId, buscarViagemData) => {
+    const header = {
+        headers: {
+            auth: localStorage.getItem("token")
+        }
+    }
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/geovana-oliveira-aragon/trips/${viagemId}`,
+    header)
+    .then(() => {
+        alert("Viagem deletada com sucesso!")
+        buscarViagemData()
+    })
+    .catch((err) => {
+        alert("Erro! Tente novamente!😔")
     })
 }
