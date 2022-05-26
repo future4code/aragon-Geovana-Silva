@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import { irParaDetalhes } from "../Routes/Coordinator";
+
 export default function CardViagem(props) {
+    const navigate = useNavigate()
     const {
         id,
         name,
@@ -19,7 +23,7 @@ return(
         <p><b> 📆 Data: </b> {date} </p>
         {token && (
             <div>
-                <button> Detalhes </button>
+                <button onClick={() => irParaDetalhes(navigate, id)}> Detalhes </button>
                 <button onClick={() => props.removerViagem(id)}> Deletar viagem </button>
             </div>
         )}
