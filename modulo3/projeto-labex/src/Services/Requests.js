@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { irParaAdm } from '../Routes/Coordinator';
 
-export const requesicaoLogin = (email, password, navigate) => {
+export const requesicaoLogin = (
+    email, 
+    password, 
+    navigate
+) => {
     const body = {
         email: email,
         password: password
@@ -18,7 +22,10 @@ export const requesicaoLogin = (email, password, navigate) => {
     })
 }
 
-export const deletarViagem = (viagemId, buscarViagemData) => {
+export const deletarViagem = (
+    viagemId, 
+    buscarViagemData
+) => {
     const header = {
         headers: {
             auth: localStorage.getItem("token")
@@ -35,7 +42,11 @@ export const deletarViagem = (viagemId, buscarViagemData) => {
     })
 }
 
-export const criarViagem = (body, limpar, buscarViagemData) => {
+export const criarViagem = (
+    body, 
+    limpar, 
+    buscarViagemData
+) => {
     const header = {
         headers: {
             auth: localStorage.getItem("token")
@@ -50,5 +61,47 @@ export const criarViagem = (body, limpar, buscarViagemData) => {
     })
     .catch((err) => {
         alert("Erro!😪", err.message)
+    })
+}
+
+export const enviarCandidatura = (
+    body,
+    viagemId,
+    limpar
+) => {
+    axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/geovana-oliveira-aragon/trips/${viagemId}/apply`,
+    body)
+    .then(() => {
+        alert("Candidatura enviada!")
+        limpar()
+    })
+    .catch((err) => {
+        alert("Erro! Tente novamente!😥")
+    })
+}
+
+export const decidirCandidato = (
+    viagemId,
+    candidatoId,
+    decisao,
+    buscarViagemDetalhada
+) => {
+    const header = {
+        headers: {
+            auth: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        approve: decisao
+    }
+    axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/geovana-oliveira-aragon/trips/${viagemId}/candidates/${candidatoId}/decide`,
+    body, header)
+    .then(() => {
+        decisao ? alert("Candidato aceito na viagem!😍")
+        : alert("Candidatura reprovada!")
+        buscarViagemDetalhada()
+    })
+    .catch((err) => {
+        alert("Erro! Tente novamente!😪")
     })
 }

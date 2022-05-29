@@ -2,17 +2,30 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { irParaAdm, irParaHome } from "../Routes/Coordinator";
 import useRequesicao from "../Hooks/useRequisicao";
+import { decidirCandidato } from "../Services/Requests";
 
 export default function Detalhes () {
     const navigate = useNavigate()
     const params = useParams()
-    const [detalheData] = useRequesicao(`trip/${params.viagemId}`, {})
+    const [detalheData, buscarViagemDetalhada] = useRequesicao(`trip/${params.viagemId}`, {})
 
 useEffect(() => {
     if (!localStorage.getItem("token")){
         irParaHome(navigate)
     }
 }, [])
+
+const decisao = (
+    candidatoId,
+    decisao
+) => {
+    decidirCandidato(
+        params.viagemId,
+        candidatoId,
+        decisao,
+        buscarViagemDetalhada
+    )
+}
 
 const listaCandidatos = detalheData.trip && detalheData.trip.candidates.map((candidate) => {
     return(
@@ -22,10 +35,14 @@ const listaCandidatos = detalheData.trip && detalheData.trip.candidates.map((can
             <span><b> Idade: </b> {candidate.age} - </span>
             <span><b> País: </b> {candidate.country} - </span>
             <span><b> Texto de candidatura: </b> {candidate.applicationText} </span>
-        <button> Aprovar </button>
-        <button> Reprovar </button>
+            <button onClick={() => decisao(candidate.id, true)}> Aprovar </button>
+            <button onClick={() => decisao(candidate.id, false)}> Reprovar </button>
         </div>
     )
+})
+
+const listaAprovados = detalheData.trip && detalheData.trip.approved.map((participante) => {
+    return <li key={participante.id}> {participante.name} </li>
 })
 
 return(
@@ -37,6 +54,7 @@ return(
         {listaCandidatos}
         <hr/>
         <h4> Lista de aprovados </h4>
+        {listaAprovados}
     </div>
 )
 }
