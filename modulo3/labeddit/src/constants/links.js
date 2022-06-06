@@ -1,0 +1,1 @@
+export const URL="https://labeddit.herokuapp.com";
