@@ -11,9 +11,5 @@ export const irParaLogin = (navigate) => {
 }
 
 export const irParaSignUp = (navigate) => {
-    navigate("/singup")
-}
-
-export const irParaHeader = (navigate) => {
-    navigate("*")
+    navigate("/signup")
 }

@@ -16,7 +16,6 @@ export default function Login() {
 
     const login = (e) => {
         e.preventDefault()
-        //Estudar sobre o preventDefault
         requisicaoLogin(form, navigate, limpar)
     }
 
@@ -56,3 +55,4 @@ export default function Login() {
         </>
     )
 }
+//Botão signup não funciona, ele vai para página de erro.

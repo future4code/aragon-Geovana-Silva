@@ -13,6 +13,7 @@ export default function Header(props) {
             alert("Logout realizado!")
         }
     }
+    
     return(
         <header>
             <img src={logo} alt="Logo LabEddit" width="100px"/>
