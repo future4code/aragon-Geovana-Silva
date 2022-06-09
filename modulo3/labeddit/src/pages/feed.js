@@ -5,6 +5,10 @@ import GlobalStateContext from "../global/globalStateContext"
 import useForm from "../hooks/useForm"
 import useProteger from "../hooks/useProteger"
 import { requisicaoPost } from "../services/requisicoes"
+import styled from "styled-components"
+
+const Card = styled.div`
+`
 
 export default function Feed() {
     useProteger()
@@ -24,6 +28,15 @@ export default function Feed() {
     useEffect(() => {
         buscarPosts()
     }, [])
+
+    const mostrar = posts.length && posts.map((post) => {
+        return(
+            <Cards
+                feed={true}
+                post={post}
+            />
+        )
+    })
 
     return(
         <>
@@ -62,9 +75,9 @@ export default function Feed() {
                 <hr/>
                 <section>
                     <h2> Lista de Posts </h2>
-                    <Cards
-                        posts={posts}
-                    />
+                    <Card>
+                        {mostrar}
+                    </Card>
                 </section>
             </main>
         </>

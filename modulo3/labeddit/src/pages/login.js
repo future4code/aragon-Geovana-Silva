@@ -23,6 +23,7 @@ export default function Login() {
         <>
             <main>
                 <Header isProtected={false}/>
+                <hr/>
                 <section>
                     <h2> Login </h2>
                     <form onSubmit={login}>

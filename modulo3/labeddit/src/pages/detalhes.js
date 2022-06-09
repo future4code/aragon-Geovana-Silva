@@ -7,6 +7,7 @@ import useForm from "../hooks/useForm";
 import useProteger from "../hooks/useProteger";
 import { irParaFeed } from "../routes/coordinator";
 import { requisicaoComentario } from "../services/requisicoes";
+import refactorDate from "../components/refactorDate"
 
 export default function Detalhes() {
     useProteger()
@@ -18,7 +19,7 @@ export default function Detalhes() {
     const context = useContext(GlobalStateContext)
     const {posts, post, comentario} = context.states
     const {buscarComentarios} = context.buscas
-//Alerta acima
+
     const criar = (e) => {
         e.preventDefault()
         requisicaoComentario(form, buscarComentarios, post.Id, limpar)
@@ -33,7 +34,20 @@ export default function Detalhes() {
         }
     })
 
-    const mostrar = console.log("Aqui estará os comentários.")
+    const mostrar = comentario.length ? comentario.map((comment) => {
+        return(
+            <div key={comment.id}>
+                <span><b> Autor: </b> {comment.username} </span>
+                <p> "{comment.body}" </p>
+                <p> Criado em {refactorDate(comment.createdAt)} </p>
+                <p> Votos: {comment.voteSum ? comment.voteSum : 0} </p>
+                <button> Dislike </button>
+                <br/>
+                <button> Like </button>
+                <br/>
+            </div>
+        )
+    }) : <p> Não há comentários, seja você o(a) primeiro(a) a comentar! </p>
 
     return(
         <main>
@@ -43,10 +57,9 @@ export default function Detalhes() {
             <section>
                 <h2> Informações do post </h2>
                 <Cards
-                    posts={posts}
-                    isFeed={false}
+                    post={post}
+                    feed={false}
                 />
-                {/* //Alerta acima */}
             </section>
             <section>
                 <h2> Escreva o seu comentário </h2>
@@ -69,7 +82,7 @@ export default function Detalhes() {
             <hr/>
             <section>
                 <h2> Lista de comentários </h2>
-                {mostrar}
+                    {mostrar}
             </section>
         </main>
     )
