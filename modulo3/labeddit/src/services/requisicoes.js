@@ -62,3 +62,23 @@ export const requisicaoPost = (form, buscarPosts, limpar) => {
         alert("Erro! :(")
     })
 }
+
+export const requisicaoComentario = (form, buscarComentarios, postId, limpar) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        body: form.body
+    }
+    axios.post(`${URL}/posts/${postId}/comments`, 
+    header, body)
+    .then((res) => {
+        buscarComentarios(postId)
+        limpar()
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}

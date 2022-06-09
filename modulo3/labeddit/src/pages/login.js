@@ -55,4 +55,3 @@ export default function Login() {
         </>
     )
 }
-//Botão signup não funciona, ele vai para página de erro.

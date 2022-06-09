@@ -16,7 +16,6 @@ export default function Feed() {
     const {posts} = context.states
     const {buscarPosts} = context.buscas
 
-    //Criar requisicao do posts
     const criarPost = (e) => {
         e.preventDefault()
         requisicaoPost(form, buscarPosts, limpar)

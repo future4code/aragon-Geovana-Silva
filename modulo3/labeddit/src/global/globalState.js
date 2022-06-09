@@ -5,6 +5,8 @@ import GlobalStateContext from "./globalStateContext"
 
 const GlobalState = (props) => {
     const [posts, setPosts] = useState([])
+    const [post, setPost] = useState({})
+    const [comentario, setComentario] = useState([])
 
     const buscarPosts = () => {
         const header = {
@@ -22,11 +24,27 @@ const GlobalState = (props) => {
         })
     }
 
-    const states = {posts}
-    const composicao = {setPosts}
-    const buscas = {buscarPosts}
+    const buscarComentarios = (postId) => {
+        const header = {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        }
+        axios.get(`${URL}/posts/${postId}/comments`,
+        header)
+        .then((res) => {
+            setComentario(res.data)
+        })
+        .catch((err) => {
+            alert("Erro! :(")
+        })
+    }
 
+    const states = {posts, post, comentario}
+    const composicao = {setPosts, setPost, setComentario}
+    const buscas = {buscarPosts, buscarComentarios}
     const context = {states, composicao, buscas}
+    
     return(
         <GlobalStateContext.Provider value={context}>
             {props.children}

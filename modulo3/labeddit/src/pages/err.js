@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { irParaFeed } from "../routes/coordinator"
 import Erro from "../img/erro.png"
+
 export default function Err() {
     const navigate = useNavigate()
 
