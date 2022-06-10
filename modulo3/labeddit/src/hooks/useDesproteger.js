@@ -10,6 +10,6 @@ export const useDesproteger = () => {
         if (token) {
             irParaFeed(navigate)
         }
-    })
+    }, [])
 }
 export default useDesproteger

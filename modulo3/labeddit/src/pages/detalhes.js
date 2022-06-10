@@ -17,7 +17,7 @@ export default function Detalhes() {
         body:""
     })
     const context = useContext(GlobalStateContext)
-    const {posts, post, comentario} = context.states
+    const {post, comentario, carregando} = context.states
     const {buscarComentarios} = context.buscas
 
     const criar = (e) => {
@@ -32,7 +32,9 @@ export default function Detalhes() {
             alert("Erro! Você será redirecionado para o feed.")
             irParaFeed(navigate)
         }
-    })
+    }, [])
+
+    
 
     const mostrar = comentario.length ? comentario.map((comment) => {
         return(
@@ -53,7 +55,6 @@ export default function Detalhes() {
         <main>
             <Header isProtected={true}/>
             <hr/>
-            <button onClick={() => navigate(-1)}> Voltar </button>
             <section>
                 <h2> Informações do post </h2>
                 <Cards
@@ -77,12 +78,14 @@ export default function Detalhes() {
                     />
                     <br/>
                     <button type={"submit"}> Criar </button>
+                    <br/>
+                    <button onClick={() => navigate(-1)}> Voltar </button>
                 </form>
             </section>
             <hr/>
             <section>
                 <h2> Lista de comentários </h2>
-                    {mostrar}
+                {carregando ? <p> Carregando... </p> : mostrar}
             </section>
         </main>
     )

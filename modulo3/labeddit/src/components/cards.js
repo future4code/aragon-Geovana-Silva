@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import GlobalStateContext from "../global/globalStateContext"
 import { irParaDetalhes } from "../routes/coordinator"
+import refactorDate from "./refactorDate"
 
 export default function Cards(props) {
     const navigate = useNavigate()
@@ -28,7 +29,8 @@ export default function Cards(props) {
         <article>
             <div key={id}>
                 <h3> {username} </h3>
-                <h2> {title} </h2>
+                <h4> {title} </h4>
+                <p> Criado em: {refactorDate(createdAt)} </p>
                 <img src={`https://picsum.photos/200/300?${id}`} alt="Aleatória"/>
                 <p><b> Descrição: </b> {body} </p>
                 <p> Votos: {voteSum ? voteSum :0} </p>
@@ -45,7 +47,5 @@ export default function Cards(props) {
     )
 }
 
-//Criar data da publicação
 //Criar lógica de votos
 //Criar a função de criar comentário
-//Criar a função de mudar de página e o carregamento

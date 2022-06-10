@@ -4,7 +4,8 @@ import logo from "../img/labeddit.png"
 import styled from "styled-components"
 
 const CardHeader = styled.header`
-background-image: linear-gradient( 92.7deg,  rgba(245,212,212,1) 8.5%, rgba(252,251,224,1) 90.2% );
+background: rgb(68,0,0);
+background: linear-gradient(90deg, rgba(68,0,0,1) 6%, rgba(121,9,9,1) 100%);
 img{
     width: 250px;
     padding-top: 20px;
@@ -12,11 +13,11 @@ img{
 } h2{
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-left: 37%;
-    margin-right: 37%;
+    margin-left: 32%;
+    margin-right: 32%;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     border-radius: 15px;
-    color: white;
+    color: rgba(121,9,9,1);
     font-size: 18px;
 } button{
     margin: 1%;
@@ -25,8 +26,8 @@ img{
     padding: 1%;
     padding-top: 2px;
     padding-bottom: 4px;
-    background-color: #F2884B;
-    color: white;
+    background-color: #5EFCE8;
+    color: rgba(68,0,0,1);
     font-size: 10px;
     font-weight: bold;
 } button: hover{

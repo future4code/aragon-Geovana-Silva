@@ -51,7 +51,7 @@ export const requisicaoPost = (form, buscarPosts, limpar) => {
         title: form.title,
         body: form.body
     }
-    axios.post(`${URL}/posts?page=1&size=10`,
+    axios.post(`${URL}/posts`,
     body, header)
     .then((res) => {
         alert(res.data)
@@ -77,6 +77,120 @@ export const requisicaoComentario = (form, buscarComentarios, postId, limpar) =>
     .then((res) => {
         buscarComentarios(postId)
         limpar()
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requsicaoPostVoto = (postId, direction, buscarPosts) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        direction: direction
+    }
+    axios.post(`${URL}/posts/${postId}/votes`,
+    body, header)
+    .then((res) => {
+        alert("Você votou!")
+        buscarPosts()
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requisicaoComentarioVoto = (comentarioId, direction, buscarComentarios, postId) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        direction: direction
+    }
+    axios.post(`${URL}/comments/${comentarioId}/votes`,
+    body, header)
+    .then((res) => {
+        alert("Você votou!")
+        buscarComentarios(postId)
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requisicaoEscolherVotoPost = (buscarPosts, direction, postId) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        direction: direction
+    }
+    axios.put(`${URL}/posts/${postId}/votes`,
+    header, body)
+    .then((res) => {
+        alert("Você mudou o voto!")
+        buscarPosts()
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requisicaoEscolherVotoComentario = (postId, comentarioId, buscarComentarios, direction) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const body = {
+        direction: direction
+    }
+    axios.put(`${URL}/comments/${comentarioId}/votes`,
+    header, body)
+    .then((res) => {
+        alert("Você mudou o voto!")
+        buscarComentarios(postId)
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requisicaoDeletarVotoPost = (buscarPosts, postId) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    axios.delete(`${URL}/posts/${postId}/votes`, 
+    header)
+    .then((res) => {
+        alert("Voto removido!")
+        buscarPosts()
+    })
+    .catch((err) => {
+        alert("Erro! :(")
+    })
+}
+
+export const requisicaoDeletarVotoComentario = (comentarioId, buscarComentarios, postId) => {
+    const header = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    axios.delete(`${URL}/comments/${comentarioId}/votes`,
+    header)
+    .then((res) => {
+        alert("Voto removido!")
+        buscarComentarios(postId)
     })
     .catch((err) => {
         alert("Erro! :(")

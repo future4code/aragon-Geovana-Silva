@@ -7,17 +7,25 @@ const GlobalState = (props) => {
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState({})
     const [comentario, setComentario] = useState([])
+    const [carregando, setCarregando] = useState(false)
+    const [pagina, setPagina] = useState(1)
+    const [downVote, setDownVote] = useState(false)
+    const [upVote, setUpVote] = useState(true)
 
-    const buscarPosts = () => {
+    const size = 10
+
+    const buscarPosts = (currentPage) => {
+        setCarregando(true)
         const header = {
             headers: {
                 authorization: localStorage.getItem("token")
             }
         }
-        axios.get(`${URL}/posts?page=1&size=10`
+        axios.get(`${URL}/posts?page=${currentPage}&size=${size}`
         , header)
         .then((res) => {
             setPosts(res.data)
+            setCarregando(false)
         })
         .catch((err) => {
             alert("Erro! :(")
@@ -25,6 +33,7 @@ const GlobalState = (props) => {
     }
 
     const buscarComentarios = (postId) => {
+        setCarregando(true)
         const header = {
             headers: {
                 authorization: localStorage.getItem("token")
@@ -34,14 +43,15 @@ const GlobalState = (props) => {
         header)
         .then((res) => {
             setComentario(res.data)
+            setCarregando(false)
         })
         .catch((err) => {
             alert("Erro! :(")
         })
     }
 
-    const states = {posts, post, comentario}
-    const composicao = {setPosts, setPost, setComentario}
+    const states = {posts, post, comentario, carregando, pagina, downVote, upVote}
+    const composicao = {setPosts, setPost, setComentario, setCarregando, setPagina, setUpVote, setDownVote}
     const buscas = {buscarPosts, buscarComentarios}
     const context = {states, composicao, buscas}
     

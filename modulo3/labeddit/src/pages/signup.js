@@ -4,6 +4,40 @@ import useDesproteger from "../hooks/useDesproteger";
 import useForm from "../hooks/useForm";
 import { irParaLogin } from "../routes/coordinator";
 import { requisicaoSignUp } from "../services/requisicoes";
+import styled from "styled-components";
+
+const Main = styled.main`
+background-color: #DE4313;
+margin: 5%;
+margin-left: 30%;
+margin-right: 30%;
+border-radius: 50px;
+padding: 3%;
+label{
+    color:white;
+    font-weight: bold;
+} input{
+    border-radius: 50px;
+    border: none;
+    padding: 2px;
+    margin: 4px;
+    font-size: 25px;
+} button{
+    border-radius: 50px;
+    border: none;
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: rgba(68,0,0,1);
+    color: white;
+    font-weight: bold;
+} button: hover{
+    background-color: #DE4313;
+    color: rgba(68,0,0,1);
+}
+`
 
 export default function SignUp() {
     useDesproteger()
@@ -24,6 +58,7 @@ export default function SignUp() {
         <main>
             <Header isProtected={false}/>
             <hr/>
+            <Main>
             <section>
             <form onSubmit={cadastrar}>
                 <label htmlFor={"name"}> Nome: </label>
@@ -63,6 +98,7 @@ export default function SignUp() {
             </form>
             <button onClick={() => irParaLogin(navigate)}> Voltar</button>
             </section>
+            </Main>
         </main>
     )
 }

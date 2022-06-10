@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     align-items: center;
@@ -17,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <GlobalStyle/>
+    <App/>
   </React.StrictMode>
 );
