@@ -9,12 +9,14 @@ import styled from "styled-components"
 
 const Card = styled.div`
 background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+margin: 0;
+padding: 3%;    
 section{
     background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,209,67,1) 0%, rgba(255,145,83,1) 90% );
-    margin: 2%;
     border-radius: 50px;
     margin-left: 30%;
     margin-right: 30%;
+    margin-bottom: 3%;
 }h2{
     color: rgba(68,0,0,1);
     font-size: 30px;
@@ -47,6 +49,30 @@ section{
 } button: hover{
     background-color: rgba(68,0,0,1);
     color: white;
+}
+`
+const Lista = styled.div`
+background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,209,67,1) 0%, rgba(255,145,83,1) 90% );
+border-radius: 50px;
+margin-left: 30%;
+margin-right: 30%;
+margin-bottom: 3%;
+nav{
+    margin-bottom:3%;
+    background-color:white;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 5%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    border-radius: 10px;
+} h2{
+        color: rgba(68,0,0,1);
+        font-size: 30px;
+        padding: 2%;
+        font-weight: bold;
+        background-color: #5EFCE8;
+        border-radius: 20px;
 }
 `
 
@@ -89,7 +115,6 @@ export default function Feed() {
         <>
             <main>
                 <Header isProtected={true}/>
-                <hr/>
                 <Card>
                 <section>
                     <h2> Crie um novo Post </h2>
@@ -120,7 +145,9 @@ export default function Feed() {
                     <button type={"submit"}> Criar post </button>
                     </form>
                 </section>
+                </Card>
                 <section>
+                    <Lista>
                     <div>
                     <h2> Lista de Posts </h2>
                         <nav>
@@ -132,11 +159,10 @@ export default function Feed() {
                                 <button onClick={() => escolherPagina(1)}> Próximo </button>
                             }
                         </nav>
-                        <hr/>
                         {carregando ? <p> Carregando... </p> : mostrar}
                     </div>
+                    </Lista>
                 </section>
-                </Card>
             </main>
         </>
     )

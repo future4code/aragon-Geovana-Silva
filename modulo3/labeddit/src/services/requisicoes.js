@@ -15,7 +15,7 @@ export const requisicaoLogin = (form, navigate, limpar) => {
         alert("Login realizado!")
         irParaFeed(navigate)
     })
-    .catch((err) => {
+    .catch((err) => {   
         alert("Email e/ou senha inválidos! Tente novamente!")
         limpar()
     })
