@@ -1,0 +1,12 @@
+{
+  "name": "ex.4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Ex4.js",
+  "scripts": {
+    "start": "node ./Ex4.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
