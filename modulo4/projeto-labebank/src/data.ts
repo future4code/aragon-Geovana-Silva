@@ -3,11 +3,11 @@ export type Users = {
     name: string,
     CPF: string,
     birth: string,
-    paymentList?: extract[],
+    paymentList?: Extract,
     balance: number
 }
 
-export type extract = [
+export type Extract = [
     {
         amount: number,
         description: string,
@@ -15,7 +15,7 @@ export type extract = [
     }
 ]
 
-export const users = [
+export const users:Users[] = [
     {
         id: 1,
         name: "Larissa",
