@@ -1,0 +1,52 @@
+Exercício 1:
+USE `aragon-geovana-silva`;
+SET SQL_SAFE_UPDATES = 0;
+
+Exercício 2:
+CREATE TABLE `Projetos` (
+	id VARCHAR(500) PRIMARY KEY,
+  	name VARCHAR(100) NOT NULL UNIQUE,
+  	title VARCHAR(200) NOT NULL,
+  	date DATE NOT NULL
+);
+
+Exercício 3:
+a)
+ALTER TABLE `Projetos`
+DROP COLUMN title;
+
+b)
+ALTER TABLE `Projetos`
+CHANGE date dueDate DATE NOT NULL;
+
+c)
+ALTER TABLE `Funcionarios`
+MODIFY email VARCHAR(200) NOT NULL UNIQUE;
+
+Exercício 4:
+a)
+ALTER TABLE `Projetos`
+ADD description VARCHAR(300) NOT NULL;
+
+b)
+UPDATE `Projetos`
+SET description = "Projeto de sistema em nuvem da Labenu."
+WHERE id = "001";
+
+UPDATE `Projetos`
+SET description = "Projeto de sistema de gerenciamento de músicas da Labenu."
+WHERE id = "002";
+
+UPDATE `Projetos`
+SET description = "Projeto de rede de comunicação da Labenu."
+WHERE id = "003";
+
+Exercício 5:
+a)
+SELECT * FROM `Projetos`
+ORDER BY dueDate DESC;
+
+b)
+SELECT name, dueDate FROM `Projetos`
+ORDER BY dueDate ASC
+LIMIT 2;
