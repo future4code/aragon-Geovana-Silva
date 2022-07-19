@@ -1,0 +1,52 @@
+# TO DO LIST 📅
+Projeto que visa a ajudar os usuários a verificar, atualizar, deletar e adicionar as tarefas. Podendo, também, ver quais usuários estão responsáveis por cada tarefa.
+
+### 📋 Como acessar
+Você pode acessar a documentação através do link: https://documenter.getpostman.com/view/20785860/UzQvrjKW
+
+-> visualizar a lista de usuários usando o método GET
+-> visualizar a lista de tarefas usando o método GET
+-> visualizar lista de tarefas por responsável (Usuário) usando método GET
+-> editar o apelido(nickname) do usuário usando método PUT
+-> editar o status da tarefa usando o método PUT
+-> deletar tarefa e responsável usando o método DELETE
+
+## 🛠️ Construído com
+-- Postman
+-- BKeeper
+-- VSCode
+
+## 💻 Tecnologias
+-- SQL
+-- Knex
+-- TypesCript
+-- Express 
+
+## 👾 Bugs
+-- Método getUsersForTasks retorna:
+{
+    "message": "\n            SELECT * FROM Tasks\n            WHERE id = \"\"3\"\";\n         - ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3\"\"' at line 2"
+}
+OBS: Não vejo erro no código!
+
+-- Método putNickName retorna:
+{
+    "message": "\n            UPDATE Users\n            SET nickname = Mandy\n            WHERE id = \"5\";\n         - ER_BAD_FIELD_ERROR: Unknown column 'Mandy' in 'field list'"
+}
+OBS: Não vejo erro no código! 
+
+-- Método putStatusTasks retorna:
+{
+    "message": "Status must be a \"A FAZER\" || \"FAZENDO\" || \"FEITO\""
+}
+OBS: mesmo escrevendo certinho!
+
+
+## ✒️ Autores
+-- Geovana Oliveira (www.github.com/geovanaolis)
+
+## 🎁 Expressões de gratidão
+* Não vou mentir que a cabeça esquentou com esse projeto 
+* Cada bug esquisito que não dá pra saber nem com o console.log
+* Mas, foi um bom aprendizado... acho que vou melhorar.
+
