@@ -1,0 +1,41 @@
+**LABEBANK**
+
+API para conta de usuários em bancos 💰💳💸
+
+Você pode:
+=> fazer o cadastro;
+=> deletar conta;
+=> atualizar o saldo;
+=> pagar contas;
+
+----------------------------------
+
+**SEGUE OS ERROS DETALHADOS**
+
+.EXERCICIO 1 (Linha 28 até 39)
+        const birthYearToParse = Date.parse(birth)
+        const birthYearToData = new Date(birthYearToParse)
+        const birthYear:number = birthYearToData.getFullYear()
+        const currentYearsToParse = new Date()
+        const currentYearToData = new Date(currentYearsToParse)
+        const currentYears:number = currentYearToData.getFullYear()
+        const yearsOld = currentYears - birthYear
+        console.log(yearsOld)
+        if(yearsOld < 18){
+            res.statusCode = 422
+            throw new Error("The user cannot be a minor (<18).")
+        }
+
+.EXERCICIO 3 (Linha 125 até 126)
+        const somaBalance = (users[indexId].balance) + balance
+        users[indexId].balance = somaBalance
+
+.EXERCICIO 4 (Linha 180 até 187)
+	const newExtract:Extract = {
+            amount: amount,
+            description: description,
+            payday: currentData
+        }
+
+	users[indexId].paymentList.push(newExtract)
+        users[indexId].balance = users[indexId].balance - ammount
