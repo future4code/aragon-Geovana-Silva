@@ -1,0 +1,27 @@
+### Ping
+GET http://localhost:3003/ping
+
+### Create Perfume
+POST http://localhost:3003/perfumes
+Content-Type: application/json
+
+{
+    "name": "Good Girl Eau de Parfum",
+    "brand": "Carolina Herrera",
+    "price": 1377.80,
+    "ml": 80
+}
+
+### Buscar Perfume
+GET http://localhost:3003/perfumes?name=gi&brand=eu
+
+### Mudar o preço do perfume
+PUT http://localhost:3003/perfumes/03
+Content-Type: application/json
+
+{
+    "price": 380.00
+}
+
+### Deletar um perfume
+DELETE http://localhost:3003/perfumes/08
