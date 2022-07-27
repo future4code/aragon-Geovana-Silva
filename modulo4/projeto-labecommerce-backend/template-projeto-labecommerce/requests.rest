@@ -1,0 +1,40 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Endpoint create users
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "email": "geovana@gmail.com",
+    "password": "333333333"
+}
+
+### Endpoint get users
+GET http://localhost:3003/users
+
+### Endpoint create product
+POST http://localhost:3003/localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Camisa harry potter",
+    "price": 30.00
+}
+
+### Endpoint new purchase
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "user_id": "101",
+    "product_id": "204",
+    "quantity": 2
+}
+
+### Endpoint get purchases
+GET httP://localhost:3003/users/101/purchases
+
+### Endpoint delete user
+DELETE http://localhost:3003/users/1041
+//Criei para resolver o problema da criação de ID
