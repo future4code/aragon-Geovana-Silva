@@ -1,0 +1,8 @@
+### Create Classroom
+POST http://localhost:3003/classrooms
+Content-Type: application/json
+
+{
+    "name": "Simpsons",
+    "module": "0"
+}
