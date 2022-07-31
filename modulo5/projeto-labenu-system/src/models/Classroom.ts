@@ -1,15 +1,14 @@
 export interface IClassroomDB {
     id: string,
     name: string,
-    module: string
+    module: string | null
 }
 
 export class Classroom {
     constructor(
         private id: string,
         private name: string,
-        private students: string[],
-        private module: string
+        private module: string | null
     ) {}
     
     public getId() {
@@ -18,10 +17,6 @@ export class Classroom {
 
     public getName() {
         return this.name
-    }
-
-    public getStudents() {
-        return this.students
     }
 
     public getModule() {
@@ -36,11 +31,7 @@ export class Classroom {
         this.name = newName
     }
 
-    public setStudents(newStudents: string[]) {
-        this.students = [...newStudents]
-    }
-
-    public setModule(newModule: string) {
+    public setModule(newModule: string | null) {
         this.module = newModule
     }
 }

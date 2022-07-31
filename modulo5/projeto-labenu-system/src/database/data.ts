@@ -9,13 +9,18 @@ export const classrooms: IClassroomDB[] = [
     },
     {
         id: "02",
-        name: "Hook",
+        name: "Hooks",
         module: "6"
     },
     {
         id: "03",
         name: "Moreira",
         module: "3"
+    },
+    {
+        id: "04",
+        name: "Barbosa",
+        module: null
     }
 ]
 
@@ -82,23 +87,23 @@ export const hobbies: IHobbiesDB[] = [
 
 export const studentsHobbies: IStudentsHobbiesDB[] = [
     {
-        studentId: "21",
+        student_id: "21",
         hobby_id: "33"
     },
     {
-        studentId: "22",
+        student_id: "22",
         hobby_id: "35"
     },
     {
-        studentId: "23",
+        student_id: "23",
         hobby_id: "31"
     },
     {
-        studentId: "24",
+        student_id: "24",
         hobby_id: "32"
     },
     {
-        studentId: "25",
+        student_id: "25",
         hobby_id: "34"
     }
 ]
