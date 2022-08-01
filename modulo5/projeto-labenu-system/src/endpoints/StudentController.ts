@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { StudentDatabase } from "../database/StudentDatabase";
 import { Student } from "../models/Students";
 
@@ -8,9 +8,15 @@ export class StudentController {
         try {
             const name = req.query.name as string
 
-            const studentDatabase = new StudentDatabase()
-            const result = await studentDatabase.getAllStudents(name)
+            if(name){
+                const studentDatabase = new StudentDatabase()
+                const result = await studentDatabase.getStudentByName(name)
+            res.status(200).send({ classrooms: result })
+            }
 
+            const studentDatabase = new StudentDatabase()
+            const result = await studentDatabase.getAllStudents()
+            
             res.status(200).send({ classrooms: result })
         } catch (error) {
             res.status(errorCode).send({ message: error.message })

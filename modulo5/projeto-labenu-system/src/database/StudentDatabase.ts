@@ -6,11 +6,18 @@ export class StudentDatabase extends BaseDatabase {
     public static TABLE_HOBBIES = "Labe_Hobbies"
     public static TABLE_STUDENTS_HOBBIES = "Students_Hobbies"
 
-    public async getAllStudents(name: string) {
+    public async getAllStudents() {
         const result = await BaseDatabase
             .connection(StudentDatabase.TABLE_STUDENTS)
             .select()
-            .orWhere(`name`, `LIKE` ,`%${name}%`)
+        return result
+    }
+
+    public async getStudentByName(name: string){
+        const result = await BaseDatabase
+        .connection(StudentDatabase.TABLE_STUDENTS)
+        .select()
+        .where(`name`, `LIKE` ,`%${name}%`)
         return result
     }
 

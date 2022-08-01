@@ -8,9 +8,6 @@
 * ACESSO 🔌 : Você consegue acessar a documentação no próprio Request.rest!
 
 * BUGS 👾 : Confere aqui os bugs.
-	- Endpoint 5: Buscar estudantes a partir do seu nome
-	Quando chamo o send request ele retorna -> { "classrooms": [] }
-
 	- Endpoint 7: Não conseguir fazer.
 
 	- Deploy: Não consegui fazer, heroku está em outra versão do nada. 
