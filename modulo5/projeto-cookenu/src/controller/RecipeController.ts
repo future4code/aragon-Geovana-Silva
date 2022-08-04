@@ -8,19 +8,25 @@ export class RecipeController {
     public getAllRecipes = async (req: Request, res: Response) => {
         let errorCode = 400
         try {
-            const token = req.headers.authorization
+            const search = req.query.search as string
+            const sort = req.query.sort || "update_at" as string
+            const order = req.query.order || "asc" as string
+            const limit = Number(req.query.limit) || 10 
+            const page = Number(req.query.page) || 1
+            const offset = limit * (page -1)
 
-            if (!token) {
-                errorCode = 401
-                throw new Error("Token faltando")
-            }
+            const token = req.headers.authorization
 
             const authenticator = new Authenticator()
             const payload = authenticator.getTokenPayload(token)
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Token faltando")
+            }
+
+            if (typeof search !== "string") {
+                throw new Error("Parâmetro 'search' deve ser uma string")
             }
 
             const recipeDatabase = new RecipeDatabase()
@@ -36,7 +42,7 @@ export class RecipeController {
                     recipeDB.creator_id
                 )
             })
-
+            
             res.status(200).send({ recipes })
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
@@ -47,7 +53,7 @@ export class RecipeController {
         let errorCode = 400
         try {
             const token = req.headers.authorization
-            const id = req.params.id
+            const id = req.params.id as string
 
             const authenticator = new Authenticator()
             const payload = authenticator.getTokenPayload(token)
@@ -58,17 +64,11 @@ export class RecipeController {
             }
 
             const recipeDatabase = new RecipeDatabase()
-            const isRecipeExists = await recipeDatabase.checkExistsId(payload.id)
-            const isIdExists = await recipeDatabase.checkExistsId(id)
+            const isUserExists = await recipeDatabase.checkExistsId(payload.id)
 
-            if (!isRecipeExists) {
+            if (!isUserExists) {
                 errorCode = 401
                 throw new Error("Invalid token!")
-            }
-
-            if (!isIdExists) {
-                errorCode = 401
-                throw new Error(`Doesn't exist ID.`)
             }
 
             if(payload.role !== USER_ROLES.ADMIN){
@@ -92,5 +92,5 @@ export class RecipeController {
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
         }
-    }
+    }   
 }

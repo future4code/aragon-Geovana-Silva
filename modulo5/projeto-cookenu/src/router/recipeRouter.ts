@@ -6,4 +6,5 @@ export const recipeRouter = Router()
 const recipeController = new RecipeController()
 
 recipeRouter.get("/", recipeController.getAllRecipes)
+
 recipeRouter.delete("/:id", recipeController.deleteRecipes)

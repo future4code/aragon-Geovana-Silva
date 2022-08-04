@@ -16,15 +16,22 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "fulano@gmail.com",
-    "password": "qwerty00"
+    "email": "astrodev@gmail.com",
+    "password": "bananinha"
 }
+
+### Get all users
+GET http://localhost:3003/users?search= 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTY0NzY1OCwiZXhwIjoxNjU5NzM0MDU4fQ.5j8iFK97wwM0_V9Tpi2n8pp5mEZON0IXv5L93q9DH6Y
 
 ### Get all recipes
 GET http://localhost:3003/recipes
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ZjkzZGQ1LWU2NTgtNGIwZS05ZWZmLWIyNjYwMjBkZTZiOCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1MzQ5NzQsImV4cCI6MTY1OTYyMTM3NH0.E3nB9HTT3Pl3sMsc8U49ISPxx2uKGFv6oQ6R7f88iws
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2NDcxOTIsImV4cCI6MTY1OTczMzU5Mn0.7ISsde4haborSNcm6Rhe37I8Dn7Xdlw_m8RkN2riaQA
 
 ### Delete recipes
-DELETE http://localhost:3003/recipes/103
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzAxN2JiLTJjMDgtNGNkYy1iYjYzLTdmYmQ3Y2ViZTAxZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1NjAwMjQsImV4cCI6MTY1OTY0NjQyNH0.Fc2GfNgEjwr5QIQ6gY5a4PPlXdTkRHsfuyqVf7RN8Tg
+DELETE http://localhost:3003/recipes/101
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2NDYxNzMsImV4cCI6MTY1OTczMjU3M30.ROJkb0gEZN_6WXgc2yRQRFhvcKXc_sVFnpjRlP6mMt8
 
+### Delete users
+DELETE http://localhost:3003/users/3d321021-7003-440e-a816-3760a9cb6825
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTY0NzY1OCwiZXhwIjoxNjU5NzM0MDU4fQ.5j8iFK97wwM0_V9Tpi2n8pp5mEZON0IXv5L93q9DH6Y

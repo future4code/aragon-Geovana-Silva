@@ -13,7 +13,7 @@ export class UserController {
             const email = req.body.email
             const password = req.body.password
 
-            if (!nickname || !email || !password) {
+            if (!nickname || !email || !password || nickname === "" || email === "" || password === "") {
                 throw new Error("Parâmetros faltando")
             }
 
@@ -38,7 +38,7 @@ export class UserController {
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                throw new Error("O parâmetro deve possuir um '@' e o '.com' ")
             }
 
             const idGenerator = new IdGenerator()
@@ -78,8 +78,8 @@ export class UserController {
     public login = async (req: Request, res: Response) => {
         let errorCode = 400
         try {
-            const email = req.body.email
-            const password = req.body.password
+            const email = req.body.email as string
+            const password = req.body.password as string
 
             if (!email || !password) {
                 errorCode = 401
@@ -99,7 +99,7 @@ export class UserController {
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                throw new Error("O parâmetro deve possuir um '@' e o '.com' ")
             }
 
             const userDatabase = new UserDatabase()
@@ -145,4 +145,101 @@ export class UserController {
             res.status(errorCode).send({ message: error.message })
         }
     }
-}
+
+    public getAllUsers = async (req: Request, res: Response) => {
+        let errorCode = 400
+        try {
+            const token = req.headers.authorization
+            const search = req.query.search
+
+            const authenticator = new Authenticator()
+            const payload = authenticator.getTokenPayload(token)
+
+            if (!payload) {
+                errorCode = 401
+                throw new Error("Token faltando ou inválido")
+            }
+
+            if (typeof search !== "string") {
+                throw new Error("Parâmetro 'search' deve ser uma string")
+            }
+
+            const userDatabase = new UserDatabase()
+            const isUserExists = await userDatabase.checkExistsId(payload.id)
+
+            if (!isUserExists) {
+                errorCode = 401
+                throw new Error("Token inválido")
+            }
+
+            const usersDB = await userDatabase.getAllUsers(search)
+
+            const users = usersDB.map((user) => {
+                return new User(
+                    user.id,
+                    user.nickname,
+                    user.email,
+                    user.password,
+                    user.role
+                )
+            })
+
+            const result = users.map((user) => {
+                return {
+                    id: user.getId(),
+                    nickname: user.getNickname(),
+                    email: user.getEmail()
+                }
+            })
+
+            res.status(200).send({ users: result })
+        } catch (error) {
+            res.status(errorCode).send({ message: error.message })
+        }
+    }
+
+    public deleteUser = async (req: Request, res: Response) => {
+        let errorCode = 400
+        try {
+            const token = req.headers.authorization
+            const id = req.params.id as string
+
+            const authenticator = new Authenticator()
+            const payload = authenticator.getTokenPayload(token)
+
+            if (!payload) {
+                errorCode = 401
+                throw new Error("Token required!")
+            }
+
+            if (payload.role !== USER_ROLES.ADMIN) {
+                errorCode = 403
+                throw new Error("Only Admins can access this endpoint.")
+            }
+
+            if (typeof id !== "string") {
+                throw new Error("Parâmetro 'id' deve ser uma string")
+            }
+
+            const userDatabase = new UserDatabase()
+            const isUserExists = await userDatabase.checkExistsId(payload.id)
+
+            if (!isUserExists) {
+                errorCode = 401
+                throw new Error("Token inválido")
+            }
+
+            if (id === payload.id) {
+                throw new Error("Não é possível deletar a própria conta")
+            }
+
+            await userDatabase.deleteUser(id)
+
+            res.status(200).send({
+                message: "User deletado com sucesso"
+            })
+        } catch (error) {
+            res.status(errorCode).send({ message: error.message })
+        }
+    }
+} 

@@ -18,6 +18,21 @@ export class UserDatabase extends BaseDatabase {
             .insert(userDB)
     }
 
+    public getAllUsers = async (search: string | undefined) => {
+        let result: IUserDB[] = []
+        if (search) {
+            result = await BaseDatabase
+                .connection(UserDatabase.TABLE_USERS)
+                .select()
+                .where("nickname", "LIKE", `%${search}%`)
+        } else {
+            result = await BaseDatabase
+                .connection(UserDatabase.TABLE_USERS)
+                .select()
+        }
+        return result
+    } 
+
     public findByEmail = async (email: string) => {
         const result: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
@@ -25,5 +40,20 @@ export class UserDatabase extends BaseDatabase {
             .where({ email })
         
         return result[0]
+    }
+
+    public deleteUser = async (id: string) => {
+        await BaseDatabase
+            .connection(UserDatabase.TABLE_USERS)
+            .delete()
+            .where({ id })
+    }
+
+    public checkExistsId = async (id: string) => {
+        const result: IUserDB[] = await BaseDatabase
+            .connection(UserDatabase.TABLE_USERS)
+            .select()
+            .where({ id })
+        return result[0] ? true : false
     }
 }
