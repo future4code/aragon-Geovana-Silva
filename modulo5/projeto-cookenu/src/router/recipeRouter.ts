@@ -7,4 +7,8 @@ const recipeController = new RecipeController()
 
 recipeRouter.get("/", recipeController.getAllRecipes)
 
+recipeRouter.post("/", recipeController.createRecipes)
+
+recipeRouter.put("/:id", recipeController.updateRecipe)
+
 recipeRouter.delete("/:id", recipeController.deleteRecipes)
