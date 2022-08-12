@@ -60,19 +60,20 @@ export interface ICreatePostInputDTO {
 
 export interface IGetPostsInputDTO {
     token: string,
-    search: string
 }
 
 export interface IGetPostsPost {
     id: string,
     content: string,
-    user_id: string
+    user_id: string,
+    likes: number
 }
 
 export interface IGetPostsOutputDTO {
     posts: IGetPostsPost[]
 }
 
-export interface IGetPostsDBDTO {
-    search: string
+export interface IDeletePostInputDTO {
+    token: string,
+    id: string
 }

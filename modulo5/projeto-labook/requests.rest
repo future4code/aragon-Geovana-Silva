@@ -19,3 +19,11 @@ Content-Type: application/json
     "email": "geovana@gmail.com",
     "password": "789789"
 }
+
+### Get posts
+GET http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw
+
+### Delete posts
+DELETE http://localhost:3003/posts/203
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw

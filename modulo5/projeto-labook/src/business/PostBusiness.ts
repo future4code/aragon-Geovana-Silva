@@ -1,5 +1,6 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostInputDTO, IGetPostsDBDTO, IGetPostsInputDTO, IGetPostsOutputDTO, IGetPostsPost, Post } from "../models/Post"
+import { ICreatePostInputDTO, IDeletePostInputDTO, IGetPostsInputDTO, IGetPostsOutputDTO, IGetPostsPost, Post } from "../models/Post"
+import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
 
@@ -48,7 +49,6 @@ export class PostBusiness {
 
     public getPosts = async (input: IGetPostsInputDTO) => {
         const token = input.token
-        const search = input.search || ""
 
         if (!token|| token === "") {
             throw new Error("Token faltando")
@@ -59,11 +59,7 @@ export class PostBusiness {
             throw new Error("Token inválido ou faltando")
         }
 
-        const getPostsInputDB: IGetPostsDBDTO = {
-            search
-        }
-
-        const postDB = await this.postDatabase.getPosts(getPostsInputDB)
+        const postDB = await this.postDatabase.getPosts()
 
         const posts = postDB.map(postDB => {
             const post = new Post(
@@ -75,7 +71,8 @@ export class PostBusiness {
             const postResponse: IGetPostsPost = {
                 id: post.getId(),
                 content: post.getContent(),
-                user_id: post.getUserId()
+                user_id: post.getUserId(),
+                likes: post.getLikes()
             }
             return postResponse
         })
@@ -85,4 +82,38 @@ export class PostBusiness {
         }
         return response
     }
+
+    public deletePosts = async (input: IDeletePostInputDTO) => {
+        const {token, id} = input
+
+        const payload = this.authenticator.getTokenPayload(token)
+        if (!payload) {
+            throw new Error("Token inválido ou faltando")
+        }
+
+        if (payload.role !== USER_ROLES.ADMIN) {
+                const userDB = await this.postDatabase.findPostById(payload.id)
+                if(!userDB){
+                    throw new Error(`Não pode deletar outra conta sem ser a sua conta.`)
+                } else {
+                    await this.postDatabase.deletePosts(id)
+
+                    const response = {
+                        message: "Post deletado com sucesso!",
+                    }
+                    return response
+                }
+        } else {
+            await this.postDatabase.deletePosts(id)
+
+            const response = {
+                message: "Post deletado com sucesso"
+            }
+            return response
+        }
+    }
+
+    // public likePost = async (input: ) => {
+
+    // }
 }
