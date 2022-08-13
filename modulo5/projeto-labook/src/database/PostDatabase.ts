@@ -1,15 +1,15 @@
-import { ILikeDB, IPostDB, Post } from "../models/Post"
+import { ICreatePostDBDTO, IFindLikePostInput, ILikeDB, ILikePostInputDTO, IPostDB, Post } from "../models/Post"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class PostDatabase extends BaseDatabase {
     public static TABLE_POSTS = "Labook_Posts"
     public static TABLE_LIKES = "Labook_Likes"
 
-    public createPost = async (post: Post) => {
-        const postDB: IPostDB = {
-            id: post.getId(),
-            content: post.getContent(),
-            user_id: post.getUserId()
+    public createPost = async (post: ICreatePostDBDTO) => {
+        const postDB: ICreatePostDBDTO = {
+            id: post.id,
+            content: post.content,
+            user_id: post.user_id
         }
 
         await BaseDatabase
@@ -52,12 +52,28 @@ export class PostDatabase extends BaseDatabase {
         return postDB[0]
     }
 
-    public findLikePost = async (post_id: string, user_id: string) => {
+    public findLikePost = async (input: IFindLikePostInput) => {
+        const {post_id, user_id} = input
+        
         const postLikeDB: ILikeDB[] = await BaseDatabase
             .connection(PostDatabase.TABLE_LIKES)
             .select()
-            .where(`post_id`, `=`, `${post_id}`)
-            .andWhere(`user_id`, `=`, `${user_id}`)
+            .where({
+                post_id: post_id, 
+                user_id: user_id
+            })
         return postLikeDB[0]
+    }
+
+    public likePost = async (likeDB: ILikeDB) => {
+        const postLikeDB: ILikeDB = {
+            id: likeDB.id, 
+            post_id: likeDB.post_id, 
+            user_id: likeDB.user_id
+        }
+
+        await BaseDatabase
+            .connection(PostDatabase.TABLE_LIKES)
+            .insert(postLikeDB)
     }
 }

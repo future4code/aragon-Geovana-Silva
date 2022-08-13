@@ -53,6 +53,10 @@ export class Post {
 
 export interface ICreatePostInputDTO {
     token: string,
+    content: string
+}
+
+export interface ICreatePostDBDTO {
     id: string,
     content: string,
     user_id: string
@@ -76,4 +80,14 @@ export interface IGetPostsOutputDTO {
 export interface IDeletePostInputDTO {
     token: string,
     id: string
+}
+
+export interface ILikePostInputDTO {
+    token: string,
+    post_id: string,
+}
+
+export interface IFindLikePostInput {
+    post_id: string,
+    user_id: string
 }

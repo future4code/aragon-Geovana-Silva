@@ -20,6 +20,15 @@ Content-Type: application/json
     "password": "789789"
 }
 
+### Create posts
+POST http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw
+Content-Type: application/json
+
+{
+    "content": "olá, tudo bem?"
+}
+
 ### Get posts
 GET http://localhost:3003/posts
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw
@@ -27,3 +36,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQt
 ### Delete posts
 DELETE http://localhost:3003/posts/203
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw
+
+### Like post
+POST http://localhost:3003/posts/likes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOTVkNGZkLTk2ZmQtNGI3NS04NTIyLWE0YmNjOTczYmM4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMzIzNzgsImV4cCI6MTY2MDQxODc3OH0.ChbxtUUtKwBDjgj5l6bkp5ZYcW6WN_mgjYiJoDoVHrw
+Content-Type: application/json
+
+{
+    "post_id": "203"
+}
+
+### Dislike post
+
