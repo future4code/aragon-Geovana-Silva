@@ -1,5 +1,5 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDBDTO, ICreatePostInputDTO, IDeletePostInputDTO, IFindLikePostInput, IGetPostsInputDTO, IGetPostsOutputDTO, IGetPostsPost, ILikeDB, ILikePostInputDTO, Post } from "../models/Post"
+import { ICreatePostDBDTO, ICreatePostInputDTO, IDeletePostInputDTO, IDislikeInputDTO, IDislikePostDBDTO, IFindLikePostInput, IGetPostsInputDTO, IGetPostsOutputDTO, IGetPostsPost, ILikeDB, ILikePostInputDTO, Post } from "../models/Post"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
@@ -137,20 +137,57 @@ export class PostBusiness {
         if(isExistLike){
             throw new Error(`Você já curtiu esse post.`)
         } else {
-        const id = this.idGenerator.generate()
-        const user_id = payload.id
+            const user_id = payload.id
+            const id = this.idGenerator.generate()
 
-        const inputLikeDB = {
-            id,
-            post_id,
-            user_id
-        }
-        
-        await this.postDatabase.likePost(inputLikeDB)
+            const inputLikeDB = {
+                id,
+                post_id,
+                user_id
+            }
+            
+            await this.postDatabase.likePost(inputLikeDB)
         }
 
         const response = {
             message: "Liked!"
+        }
+        return response
+    }
+
+    public dislikePost = async (input: IDislikeInputDTO) => {
+        const {token, post_id} = input
+
+        const payload = this.authenticator.getTokenPayload(token)
+        if (!payload) {
+            throw new Error("Token inválido ou faltando")
+        }
+
+        const isExistPost = await this.postDatabase.findPostById(post_id)
+        if(!isExistPost){
+            throw new Error(`Não existe esse post.`)
+        }
+
+        const user_id = payload.id
+
+        const findInput = { post_id, user_id }
+
+        const isExistLike =  await this.postDatabase.findLikePost(findInput)
+        if(!isExistLike){
+            throw new Error(`Você não curtiu esse post.`)
+        } else {
+            const user_id = payload.id
+
+            const inputLikePostDB: IDislikePostDBDTO = {
+                post_id, 
+                user_id 
+            }
+
+            await this.postDatabase.dislikePost(inputLikePostDB)
+        }
+
+        const response = {
+            message: "Dislike!"
         }
         return response
     }

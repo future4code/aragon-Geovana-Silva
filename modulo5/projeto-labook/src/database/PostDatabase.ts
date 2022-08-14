@@ -1,4 +1,4 @@
-import { ICreatePostDBDTO, IFindLikePostInput, ILikeDB, ILikePostInputDTO, IPostDB, Post } from "../models/Post"
+import { ICreatePostDBDTO, IDislikePostDBDTO, IFindLikePostInput, ILikeDB, ILikePostInputDTO, IPostDB, Post } from "../models/Post"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class PostDatabase extends BaseDatabase {
@@ -16,7 +16,6 @@ export class PostDatabase extends BaseDatabase {
             .connection(PostDatabase.TABLE_POSTS)
             .insert(postDB)
     }
-    //ERRO NO INPUT
 
     public getPosts = async () => {
         const postsDB: IPostDB[] = await BaseDatabase
@@ -67,7 +66,7 @@ export class PostDatabase extends BaseDatabase {
 
     public likePost = async (likeDB: ILikeDB) => {
         const postLikeDB: ILikeDB = {
-            id: likeDB.id, 
+            id: likeDB.id,
             post_id: likeDB.post_id, 
             user_id: likeDB.user_id
         }
@@ -75,5 +74,30 @@ export class PostDatabase extends BaseDatabase {
         await BaseDatabase
             .connection(PostDatabase.TABLE_LIKES)
             .insert(postLikeDB)
+
+        // await BaseDatabase
+        //     .connection(PostDatabase.TABLE_POSTS)
+        //     .increment(`likes`, 1)
+        //     .where(`id`, `=`, `${postLikeDB.post_id}`)
+    }
+
+    public dislikePost = async (likeDB: IDislikePostDBDTO) => {
+        const dislikePostDB: IDislikePostDBDTO = {
+            post_id: likeDB.post_id,
+            user_id: likeDB.user_id
+        }
+
+        await BaseDatabase
+            .connection(PostDatabase.TABLE_LIKES)
+            .delete()
+            .where({    
+                post_id: dislikePostDB.post_id,
+                user_id: dislikePostDB.user_id
+            })
+        
+        // await BaseDatabase
+        //     .connection(PostDatabase.TABLE_POSTS)
+        //     .decrement("likes", 1)
+        //     .where(`id`, `=`, `${dislikePostDB.post_id}`)
     }
 }

@@ -91,3 +91,13 @@ export interface IFindLikePostInput {
     post_id: string,
     user_id: string
 }
+
+export interface IDislikeInputDTO {
+    token: string,
+    post_id: string
+}
+
+export interface IDislikePostDBDTO {
+    post_id: string,
+    user_id: string
+}
