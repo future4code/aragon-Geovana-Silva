@@ -1,0 +1,37 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Endpoint de GetAllUsers
+GET http://localhost:3003/users
+
+### Endpoint de Login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "ciclana@gmail.com",
+    "password": "asdfg123"
+}
+
+### Endpoint de SignUp
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "nickname": "geo",
+    "email": "geovana@gmail.com",
+    "password": "geo123456"
+}
+
+### Endpoint de updateUser
+PUT http://localhost:3003/users/7079b8e4-95cd-48aa-82a9-77454e94b789
+Content-Type: application/json
+
+{
+    "nickname": "leona",
+    "email": "leona@gmail.com",
+    "password": "leona77777"
+}
+
+### Enpoint de deleteUser
+DELETE http://localhost:3003/users/:f03017bb-2c08-4cdc-bb63-7fbd7cebe01f
