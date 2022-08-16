@@ -1,0 +1,58 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Signup
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "nickname": "yuzo",
+    "email": "yuzo@email.com",
+    "password": "abc123"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "yuzo@email.com",
+    "password": "abc123"
+}
+
+### Get all users
+GET http://localhost:3003/users?search= 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NTRhNzJjLWNiMDEtNDFiNC04N2FjLTFiZWU0Mzg4MTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk5MTYwNTMsImV4cCI6MTY2MDAwMjQ1M30.Y81qGhkaXnxdVRLi9ab_icQfo13KCN0XrciYy0ybyns
+
+### Get all recipes
+GET http://localhost:3003/recipes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2NDcxOTIsImV4cCI6MTY1OTczMzU5Mn0.7ISsde4haborSNcm6Rhe37I8Dn7Xdlw_m8RkN2riaQA
+
+### Create recipes
+POST http://localhost:3003/recipes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NTRhNzJjLWNiMDEtNDFiNC04N2FjLTFiZWU0Mzg4MTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk5MTYwNTMsImV4cCI6MTY2MDAwMjQ1M30.Y81qGhkaXnxdVRLi9ab_icQfo13KCN0XrciYy0ybyns
+Content-Type: application/json
+
+{
+    "title": "Bolo de cenoura",
+    "description": "Bolo de cenoura da família",
+    "creator_id": "c554a72c-cb01-41b4-87ac-1bee438817bb"
+}
+
+### Edit recipes
+PUT http://localhost:3003/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1NTRhNzJjLWNiMDEtNDFiNC04N2FjLTFiZWU0Mzg4MTdiYiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk5MTYwNTMsImV4cCI6MTY2MDAwMjQ1M30.Y81qGhkaXnxdVRLi9ab_icQfo13KCN0XrciYy0ybyns
+Content-Type: application/json
+
+{
+    "title": "Cenourinha doce",
+    "description": "Bolo fofinho gostoso"
+}
+
+### Delete recipes
+DELETE http://localhost:3003/recipes/101
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzAxN2JiLTJjMDgtNGNkYy1iYjYzLTdmYmQ3Y2ViZTAxZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk5MTU5OTUsImV4cCI6MTY2MDAwMjM5NX0.-wwm30_6Pf0CMD6bEOOop1GgtCn5p2gUkweCvdGBmLo
+
+### Delete users
+DELETE http://localhost:3003/users/3d321021-7003-440e-a816-3760a9cb6825
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTY0NzY1OCwiZXhwIjoxNjU5NzM0MDU4fQ.5j8iFK97wwM0_V9Tpi2n8pp5mEZON0IXv5L93q9DH6Y
