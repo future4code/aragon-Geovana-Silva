@@ -15,8 +15,8 @@ describe("Testando UserBusiness", () => {
 
     test("login bem sucedido", async () => {
         const input: ILoginInputDTO = {
-            email: "fulano@gmail.com",
-            password: "qwerty00"
+            email: "astrodev@gmail.com",
+            password: "bananinha"
         }
 
         const response = await userBusiness.login(input)
