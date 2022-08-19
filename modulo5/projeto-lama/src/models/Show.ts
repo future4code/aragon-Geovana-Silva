@@ -50,3 +50,43 @@ export class Show {
         this.tickets = newTickets
     }
 }
+
+export interface ICreateShowInputDTO {
+    token: string,
+    band: string,
+    starts_at: string
+}
+
+export interface ICreateShowInputDBTO {
+    id: string,
+    band: string,
+    starts_at: Date
+}
+
+export interface ICreateShowOutputDTO {
+    message: string
+}
+
+export interface IReservationTicketsInputDTO {
+    token: string,
+    show_id: string
+}
+
+export interface IReservationTicketsInputDBTO {
+    id: string,
+    show_id: string,
+    user_id: string
+}
+
+export interface IReservationTicketsOutputDTO {
+    message: string
+}
+
+export interface IRemoverTicketsInputDTO {
+    token: string,
+    show_id: string
+}
+
+export interface IRemoverTicketsOutputDTO {
+    message: string
+}

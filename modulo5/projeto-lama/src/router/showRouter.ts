@@ -17,3 +17,7 @@ const showController = new ShowController(
     )
 )
 
+showRouter.post("/", showController.createShow)
+showRouter.post("/tickets/:id", showController.reservationTickets)
+showRouter.delete("/tickets/:id", showController.removeReservationTickets)
+

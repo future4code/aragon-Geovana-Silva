@@ -4,7 +4,7 @@ import { BaseDatabase } from "./BaseDatabase"
 export class UserDatabase extends BaseDatabase {
     public static TABLE_USERS = "Lama_Users"
 
-    public createUser = async (user: User) => {
+    public toUserDBModel = (user: User) => {
         const userDB: IUserDB = {
             id: user.getId(),
             name: user.getName(),
@@ -12,17 +12,30 @@ export class UserDatabase extends BaseDatabase {
             password: user.getPassword(),
             role: user.getRole()
         }
+        return userDB
+    }
+
+    public createUser = async (user: User) => {
+        const userDB = this.toUserDBModel(user)
 
         await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .insert(userDB)
     }
 
-    public findByEmail = async (email: string) => {
-        const userDB: IUserDB[] = await BaseDatabase
+    public findByEmail = async (email: string): Promise<IUserDB | undefined> => {
+        const result: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .select()
             .where({ email })
-        return userDB[0] 
+        return result[0]
+    }
+
+    public findById = async (id: string): Promise<IUserDB | undefined> => {
+        const result: IUserDB[] = await BaseDatabase
+            .connection(UserDatabase.TABLE_USERS)
+            .select()
+            .where({ id })
+        return result[0]
     }
 }

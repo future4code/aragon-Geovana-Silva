@@ -1,3 +1,42 @@
 ### Endpoint de teste
 GET http://localhost:3003/ping
 
+### Signup
+POST http://localhost:3003/users/signup 
+Content-Type: application/json
+
+{
+    "name": "Geovana",
+    "email": "geovana@gmail.com",
+    "password": "geo787878"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "geovana@gmail.com",
+    "password": "geo787878"
+}
+
+### Create shows
+POST http://localhost:3003/shows
+Authorization: 
+Content-Type: application/json
+
+{
+    "band": "Linkin Park",
+    "starts_at": "2022/12/08"
+}
+
+
+
+### Reservation tickets
+POST http://localhost:3003/shows/tickets/202
+Authorization: 
+
+### Remove tickets
+DELETE http://localhost:3003/shows/tickets/202
+Authorization: 
+
