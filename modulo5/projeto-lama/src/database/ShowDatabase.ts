@@ -37,8 +37,8 @@ export class ShowDatabase extends BaseDatabase {
         const result: any = await BaseDatabase
             .connection(ShowDatabase.TABLE_TICKETS)
             .select()
-            .count(5000, "-", "id AS tickets")
-            .where({ showId: showId })
+            .count("id AS tickets")
+            .where({ show_id: showId })
             return result[0].tickets as number
     }
 

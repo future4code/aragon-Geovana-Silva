@@ -5,10 +5,11 @@ import { HashManagerMock } from "../mocks/services/HashManagerMock"
 import { IdGeneratorMock } from "../mocks/services/IdGeneratorMock"
 import { ICreateShowInputDTO } from "../../src/models/Show"
 import { BaseError } from "../../src/errors/BaseError"
+import { ShowDatabase } from "../../src/database/ShowDatabase"
 
 describe("testando o show business", () => {
     const showBusiness = new ShowBusiness(
-        new ShowDatabaseMock(),
+        new ShowDatabaseMock() as unknown as ShowDatabase,
         new IdGeneratorMock(),
         new HashManagerMock(),
         new AuthenticatorMock()
@@ -82,24 +83,24 @@ describe("testando o show business", () => {
         }
     })
 
-    // test("deve retornar erro, o user_role for normal", async () => {
-    //     expect.assertions(2)
+    test("deve retornar erro, o user_role for normal", async () => {
+        expect.assertions(2)
 
-    //     try {
-    //         const input: ICreateShowInputDTO = {
-    //             token: "token-fulano",
-    //             band: "band-mock",
-    //             starts_at: "2022/12/12"
-    //         }
+        try {
+            const input: ICreateShowInputDTO = {
+                token: "token-mock",
+                band: "band-mock",
+                starts_at: "2022/12/12"
+            }
 
-    //         await showBusiness.createShow(input)
-    //     } catch (error: unknown) {
-    //         if (error instanceof BaseError) {
-    //             expect(error.statusCode).toEqual(400)
-    //             expect(error.message).toEqual("Usuário cadastrado, mas sem permissão")
-    //         }
-    //     }
-    // })
+            await showBusiness.createShow(input)
+        } catch (error: unknown) {
+            if (error instanceof BaseError) {
+                expect(error.statusCode).toEqual(403)
+                expect(error.message).toEqual("Usuário cadastrado, mas sem permissão")
+            }
+        }
+    })
 
     test("deve retornar erro, caso exista o show marcada na data", async () => {
         expect.assertions(2)

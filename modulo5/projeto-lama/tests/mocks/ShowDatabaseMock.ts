@@ -1,5 +1,5 @@
 import { BaseDatabase } from "../../src/database/BaseDatabase"
-import { ICreateShowInputDBTO, IShowDB } from "../../src/models/Show"
+import { ICreateShowInputDBTO, IShowDB, ITicketDB } from "../../src/models/Show"
 
 export class ShowDatabaseMock extends BaseDatabase {
     public static TABLE_POSTS = "Labook_Posts"
@@ -20,5 +20,29 @@ export class ShowDatabaseMock extends BaseDatabase {
             default:
                 return undefined
         }
+    }
+
+    public getShows = async () => {
+
+    }
+
+    public getTickets = async (showId: string) => {
+
+    }
+
+    public findShowById = async (showId: string) => {
+
+    }
+
+    public reservationTickets = async (ticketsDB: ITicketDB) => {
+
+    }
+
+    public findReservationByShow = async (showId: string, userId: string) => {
+
+    }
+
+    public removeReservationTickets = async (showId: string, userId: string) => {
+
     }
 }

@@ -67,6 +67,14 @@ export interface ICreateShowOutputDTO {
     message: string
 }
 
+export interface IGetShowsInputDTO {
+
+}
+
+export interface IGetShowsOutputDTO {
+    shows: Show[]
+}
+
 export interface IReservationTicketsInputDTO {
     token: string,
     show_id: string

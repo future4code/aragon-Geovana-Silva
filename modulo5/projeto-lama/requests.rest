@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### Create shows
 POST http://localhost:3003/shows
-Authorization: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls 
 Content-Type: application/json
 
 {
@@ -30,13 +30,14 @@ Content-Type: application/json
     "starts_at": "2022/12/08"
 }
 
-
+### Get shows
+GET http://localhost:3003/shows
 
 ### Reservation tickets
 POST http://localhost:3003/shows/tickets/202
-Authorization: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls
 
 ### Remove tickets
 DELETE http://localhost:3003/shows/tickets/202
-Authorization: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls
 

@@ -1,10 +1,11 @@
 import { ShowDatabase } from "../database/ShowDatabase"
 import { ConflictError } from "../errors/ConflictError"
 import { ForbiddenError } from "../errors/ForbiddenError"
+import { LimitError } from "../errors/LimitError"
 import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
-import { ICreateShowInputDBTO, ICreateShowInputDTO, ICreateShowOutputDTO, IRemoverTicketsInputDTO, IRemoverTicketsOutputDTO, IReservationTicketsInputDBTO, IReservationTicketsInputDTO, IReservationTicketsOutputDTO, ITicketDB } from "../models/Show"
+import { ICreateShowInputDBTO, ICreateShowInputDTO, ICreateShowOutputDTO, IGetShowsInputDTO, IGetShowsOutputDTO, IRemoverTicketsInputDTO, IRemoverTicketsOutputDTO, IReservationTicketsInputDBTO, IReservationTicketsInputDTO, IReservationTicketsOutputDTO, ITicketDB, Show } from "../models/Show"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -65,8 +66,29 @@ export class ShowBusiness {
         return response
     }
 
+    public getShows = async () => {
+        const showDB = await this.showDatabase.getShows()
 
-    //VER COMO FAZ A VALIDAÇÃO DO LIMITE DE TICKETS (5000)
+        const shows = showDB.map(showsDB => {
+            return new Show(
+                showsDB.id,
+                showsDB.band,
+                showsDB.starts_at
+            )
+        })
+
+        for (let show of shows){
+            const tickets = await this.showDatabase.getTickets(show.getId())
+            show.setTickets(show.getTickets() - tickets)
+        }
+
+        const response: IGetShowsOutputDTO = {
+            shows
+        }
+        return response
+    }
+
+
     public reservationTickets = async (input: IReservationTicketsInputDTO) => {
         const {token, show_id} = input
 
@@ -78,6 +100,11 @@ export class ShowBusiness {
         const showDB = this.showDatabase.findShowById(show_id)
         if(!showDB){
             throw new NotFoundError("Show não encontrado")
+        }
+
+        const tickets = await this.showDatabase.getTickets(show_id)
+        if(tickets > 5000){
+            throw new LimitError("Não há mais tickets disponíveis para esse show. Tente outra!")
         }
 
         const isAlreadyTicketReservationByShow = await this.showDatabase.findReservationByShow(
