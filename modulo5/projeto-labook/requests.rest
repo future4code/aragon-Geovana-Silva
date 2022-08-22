@@ -1,0 +1,46 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### SignUp
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Geovana",
+    "email": "geovana@gmail.com",
+    "password": "789789"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "geovana@gmail.com",
+    "password": "789789"
+}
+
+### Create posts
+POST http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYzRjOWQ1LWU3YjgtNDUxNC1hOGM3LTg1NWE1NmVkM2ZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MzA4MDYsImV4cCI6MTY2MDUxNzIwNn0.rJX2V-1NZZcS9MZgTrWqYa41IasOIwanxPnK_52EmO4
+Content-Type: application/json
+
+{
+    "content": "olá, tudo bem?"
+}
+
+### Get posts
+GET http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYzRjOWQ1LWU3YjgtNDUxNC1hOGM3LTg1NWE1NmVkM2ZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MzA4MDYsImV4cCI6MTY2MDUxNzIwNn0.rJX2V-1NZZcS9MZgTrWqYa41IasOIwanxPnK_52EmO4
+
+### Delete posts
+DELETE http://localhost:3003/posts/203
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYzRjOWQ1LWU3YjgtNDUxNC1hOGM3LTg1NWE1NmVkM2ZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MzA4MDYsImV4cCI6MTY2MDUxNzIwNn0.rJX2V-1NZZcS9MZgTrWqYa41IasOIwanxPnK_52EmO4
+
+### Like post
+POST http://localhost:3003/posts/likes/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYzRjOWQ1LWU3YjgtNDUxNC1hOGM3LTg1NWE1NmVkM2ZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MzA4MDYsImV4cCI6MTY2MDUxNzIwNn0.rJX2V-1NZZcS9MZgTrWqYa41IasOIwanxPnK_52EmO4
+
+### Dislike post
+DELETE http://localhost:3003/posts/likes/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYzRjOWQ1LWU3YjgtNDUxNC1hOGM3LTg1NWE1NmVkM2ZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MzA4MDYsImV4cCI6MTY2MDUxNzIwNn0.rJX2V-1NZZcS9MZgTrWqYa41IasOIwanxPnK_52EmO4
