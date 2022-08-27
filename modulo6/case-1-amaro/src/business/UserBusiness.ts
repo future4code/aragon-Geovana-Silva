@@ -3,7 +3,7 @@ import { ConflictError } from "../errors/ConflictError"
 import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
-import { ILoginInputDTO, ILoginOutputDTO, ISignupInputDTO, ISignupOutputDTO, User, USER_ROLES } from "../models/User"
+import { ILoginInputDTO, ILoginOutputDTO, ISignupInputDTO, ISignupOutputDTO, User } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -56,15 +56,13 @@ export class UserBusiness {
             id,
             name,
             email,
-            hashedPassword,
-            USER_ROLES.NORMAL
+            hashedPassword
         )
 
         await this.userDatabase.createUser(user)
 
         const payload: ITokenPayload = {
-            id: user.getId(),
-            role: user.getRole()
+            id: user.getId()
         }
 
         const token = this.authenticator.generateToken(payload)
@@ -106,8 +104,7 @@ export class UserBusiness {
             userDB.id,
             userDB.name,
             userDB.email,
-            userDB.password,
-            userDB.role
+            userDB.password
         )
 
         const isPasswordCorrect = await this.hashManager.compare(
@@ -120,8 +117,7 @@ export class UserBusiness {
         }
 
         const payload: ITokenPayload = {
-            id: user.getId(),
-            role: user.getRole()
+            id: user.getId()
         }
 
         const token = this.authenticator.generateToken(payload)

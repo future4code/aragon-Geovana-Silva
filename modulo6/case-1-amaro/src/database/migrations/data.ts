@@ -1,5 +1,5 @@
 import { IProductDB, ITagsDB, ITagsProductsDB } from "../../models/Products"
-import { IUserDB, USER_ROLES } from "../../models/User"
+import { IUserDB } from "../../models/User"
 
 export const users: IUserDB[] = [
     {
@@ -7,21 +7,18 @@ export const users: IUserDB[] = [
         name: "Astrodev",
         email: "astrodev@gmail.com",
         password: "$2a$12$RBAWOHpUvGTE.MEeIohAzec9tlVqtNA/x2PMPt/Hrt0vI437cQdJC", // bananinha
-        role: USER_ROLES.ADMIN
     },
     {
         id: "102",
         name: "Fulano",
         email: "fulano@gmail.com",
         password: "$2a$12$PULtVNlAll87D6E8pR/0HO9vbzVDPaUMA89rc5cNmYoAAepbwmkcO", // qwerty00
-        role: USER_ROLES.NORMAL
     },
     {
         id: "103",
         name: "Ciclana",
         email: "ciclana@gmail.com",
         password: "$2a$12$LkWMqS3oPhP2iVMcZOVvWer9ahUPulxjB0EA4TWPxWaRuEEfYGu/i", // asdfg123
-        role: USER_ROLES.NORMAL
     }
 ]
 
@@ -130,275 +127,272 @@ export const products: IProductDB[] = [
 
 export const tags: ITagsDB[] = [
     {
-        id: "000101",
-        name: "casual"
+        id: "101",
+        tag: 'balada',
     },
     {
-        id: "000102",
-        name: "metal"
+        id: "102",
+        tag: 'neutro',
     },
     {
-        id: "000103",
-        name: "delicado"
+        id: "103",
+        tag: 'delicado',
     },
     {
-        id: "000104",
-        name: "neutro"
+        id: "104",
+        tag: 'festa',
     },
     {
-        id: "000105",
-        name: "basics"
+        id: "105",
+        tag: 'casual',
     },
     {
-        id: "000107",
-        name: "inverno"
+        id: "106",
+        tag: 'metal',
     },
     {
-        id: "000108",
-        name: "viagem"
+        id: "107",
+        tag: 'colorido',
     },
     {
-        id: "000109",
-        name: "liso"
+        id: "108",
+        tag: 'estampas',
     },
     {
-        id: "000110",
-        name: "balada"
+        id: "109",
+        tag: 'passeio',
     },
     {
-        id: "000111",
-        name: "moderno"
+        id: "110",
+        tag: 'workwear',
     },
     {
-        id: "000112",
-        name: "descolado"
+        id: "111",
+        tag: 'viagem',
     },
     {
-        id: "000113",
-        name: "workwaer"
+        id: "112",
+        tag: 'descolado',
     },
     {
-        id: "000114",
-        name: "elastano"
+        id: "113",
+        tag: 'moderno',
     },
     {
-        id: "000115",
-        name: "couro"
+        id: "114",
+        tag: 'inverno',
     },
     {
-        id: "000116",
-        name: "estampado"
+        id: "115",
+        tag: 'liso',
     },
     {
-        id: "000117",
-        name: "passeio"
+        id: "116",
+        tag: 'basics',
     },
     {
-        id: "000118",
-        name: "colorido"
+        id: "117",
+        tag: 'boho',
     },
     {
-        id: "000119",
-        name: "boho"
+        id: "118",
+        tag: 'elastano',
+    },
+    ,
+    {
+        id: "119",
+        tag: 'festa',
     },
     {
-        id: "000120",
-        name: "veludo"
+        id: "120",
+        tag: 'couro',
     },
-    {
-        id: "000121",
-        name: "inverno"
-    },
-    {
-        id: "000122",
-        name: "festa"
-    }
 ]
 
 export const tagsProducts: ITagsProductsDB[] = [
     {
         id: '201',
         product_id: '8371',
-        tag_id: '110'
+        tag_id: '101',
     },
     {
         id: '202',
         product_id: '8371',
-        tag_id: '104'
+        tag_id: '102',
     },
     {
         id: '203',
         product_id: '8371',
-        tag_id: '103'
+        tag_id: '103',
     },
     {
         id: '204',
         product_id: '8371',
-        tag_id: '122'
+        tag_id: '104',
     },
     {
         id: '205',
         product_id: '8367',
-        tag_id: '101'
+        tag_id: '105',
     },
     {
         id: '206',
         product_id: '8367',
-        tag_id: '102',
+        tag_id: '106',
     },
     {
         id: '207',
         product_id: '8363',
-        tag_id: '118'
+        tag_id: '107',
     },
     {
         id: '208',
         product_id: '8363',
-        tag_id: '102'
+        tag_id: '106',
     },
     {
         id: '209',
         product_id: '8363',
-        tag_id: '103'
+        tag_id: '103',
     },
     {
         id: '210',
         product_id: '8363',
-        tag_id: '117'
+        tag_id: '108',
     },
     {
         id: '211',
         product_id: '8363',
-        tag_id: '118'
+        tag_id: '109',
     },
     {
         id: '212',
         product_id: '8360',
-        tag_id: '119'
+        tag_id: '110',
     },
     {
         id: '213',
         product_id: '8360',
-        tag_id: '120'
+        tag_id: '111',
     },
     {
         id: '214',
         product_id: '8360',
-        tag_id: '121'
+        tag_id: '112',
     },
     {
         id: '215',
         product_id: '8358',
-        tag_id: '122'
+        tag_id: '113',
     },
     {
         id: '216',
         product_id: '8358',
-        tag_id: '101'
+        tag_id: '114',
     },
     {
         id: '217',
         product_id: '8358',
-        tag_id: '102'
+        tag_id: '115',
     },
     {
         id: '218',
         product_id: '8358',
-        tag_id: '103'
+        tag_id: '116',
     },
     {
         id: '219',
         product_id: '8314',
-        tag_id: '104'
+        tag_id: '105',
     },
     {
         id: '220',
         product_id: '8314',
-        tag_id: '105'
+        tag_id: '111',
     },
     {
         id: '221',
         product_id: '8314',
-        tag_id: '106',
+        tag_id: '103',
     },
     {
         id: '222',
         product_id: '8311',
-        tag_id: '107'
+        tag_id: '101',
     },
     {
         id: '223',
         product_id: '8311',
-        tag_id: '108'
+        tag_id: '106',
     },
     {
         id: '224',
         product_id: '8311',
-        tag_id: '109'
+        tag_id: '117',
     },
     {
         id: '225',
         product_id: '8311',
-        tag_id: '110'
+        tag_id: '112',
     },
     {
         id: '226',
         product_id: '8311',
-        tag_id: '111'
+        tag_id: '109',
     },
     {
         id: '227',
         product_id: '8310',
-        tag_id: '112'
+        tag_id: '105',
     },
     {
         id: '228',
         product_id: '8310',
-        tag_id: '113'
+        tag_id: '106',
     },
     {
         id: '229',
         product_id: '8310',
-        tag_id: '114'
+        tag_id: '103',
     },
     {
         id: '230',
         product_id: '8310',
-        tag_id: '115'
+        tag_id: '112',
     },
     {
         id: '231',
         product_id: '8310',
-        tag_id: '116'
+        tag_id: '118',
     },
     {
         id: '232',
         product_id: '8310',
-        tag_id: '117'
+        tag_id: '108',
     },
     {
         id: '233',
         product_id: '8309',
-        tag_id: '118'
+        tag_id: '114',
     },
     {
         id: '234',
         product_id: '8309',
-        tag_id: '119'
+        tag_id: '115',
     },
     {
         id: '235',
         product_id: '8309',
-        tag_id: '120'
+        tag_id: '105',
     },
     {
         id: '236',
         product_id: '8309',
-        tag_id: '121'
+        tag_id: '112',
     },
     {
         id: '237',
         product_id: '8301',
-        tag_id: '122'
-    }
+        tag_id: '105',
+    },
 ]

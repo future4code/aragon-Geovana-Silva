@@ -5,7 +5,7 @@ export interface IProductDB {
 
 export interface ITagsDB {
     id: string,
-    name: string
+    tag: string
 }
 
 export interface ITagsProductsDB {
@@ -18,7 +18,7 @@ export class Product {
     constructor(
         private id: string,
         private name: string,
-        private tags: string[]
+        private tags: string[] = []
     ) {}
 
     public getId = () => {
@@ -42,6 +42,36 @@ export class Product {
     }
 
     public setTags = (newTag: string[]) => {
-        this.tags = newTag
+        this.tags = [...newTag]
     }
+}
+
+export interface ICreateProductInputDTO {
+    token: string,
+    name: string,
+    tags: string[]
+}
+
+export interface ICreateProductOutputDTO {
+    message: string,
+    product: Product
+}
+
+export interface IGetProductsOutput {
+    product: Product[]
+}
+
+export interface IGetProductsDB {
+    order: string,
+    sort: string,
+    limit: number,
+    page: number,
+    offset: number
+}
+
+export interface IGetProductsInputDBTO {
+    order: string,
+    sort:  string,
+    limit: string,
+    page: string
 }

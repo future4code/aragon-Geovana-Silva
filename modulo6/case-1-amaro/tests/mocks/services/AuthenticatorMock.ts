@@ -1,4 +1,3 @@
-import { USER_ROLES } from "../../../src/models/User"
 import { ITokenPayload } from "../../../src/services/Authenticator"
 
 export class AuthenticatorMock {
@@ -15,13 +14,11 @@ export class AuthenticatorMock {
         switch(token) {
             case "token-mock":
                 return {
-                    id: "id-mock",
-                    role: USER_ROLES.NORMAL
+                    id: "id-mock"
                 }
             case "token-astrodev":
                 return {
-                    id: "101",
-                    role: USER_ROLES.ADMIN
+                    id: "101"
                 }
             default:
                 return null
