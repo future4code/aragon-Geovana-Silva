@@ -22,7 +22,7 @@ describe("Testando UserBusiness", () => {
 
         const response = await userBusiness.login(input)
 
-        expect(response.message).toEqual("Login realizado com sucesso")
+        expect(response.message).toEqual("Login successfully")
         expect(response.token).toEqual("token-astrodev")
     })
 
@@ -39,7 +39,94 @@ describe("Testando UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(401)
-                expect(error.message).toEqual("Password incorreto")
+                expect(error.message).toEqual("Incorrect password")
+            }
+        }
+    })
+
+    test("Erro ao se logar com um email não cadastrado", async () => {
+        expect.assertions(2)
+        try {
+            const input: ILoginInputDTO = {
+                email: "alice@gmail.com",
+                password: "alice99"
+            }
+    
+            await userBusiness.login(input)
+        } catch (error) {
+            if (error instanceof BaseError) {
+                expect(error.message).toEqual("Email not registered")
+                expect(error.statusCode).toEqual(404)
+            }
+        }
+    })
+
+    test("erro ao se logar com uma senha menor que 6 caracteres", async () => {
+        try {
+            const input: ILoginInputDTO = {
+                email: "alice@gmail.com",
+                password: "abc12"
+            }
+    
+            await userBusiness.login(input)
+        } catch (error) {
+            if (error instanceof BaseError) {
+                expect(error.message).toEqual("Invalid 'password' parameter: minimum 6 characters")
+                expect(error.statusCode).toEqual(400)
+            }
+        }
+    })
+
+    test("deve retornar erro caso o password não seja uma string", async () => {
+        expect.assertions(2)
+        
+        try {
+            const input = {
+                email: "alice@gmail.com",
+                password: undefined
+            } as unknown as ILoginInputDTO
+
+            await userBusiness.login(input)
+        } catch (error: unknown) {
+            if (error instanceof BaseError) {
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Invalid 'password' parameter: must be a string")
+            }
+        }
+    })
+
+    test("deve retornar erro caso o email não seja uma string", async () => {
+        expect.assertions(2)
+        
+        try {
+            const input = {
+                email: undefined,
+                password: "alice99"
+            } as unknown as ILoginInputDTO
+
+            await userBusiness.login(input)
+        } catch (error: unknown) {
+            if (error instanceof BaseError) {
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Invalid 'email' parameter: must be a string")
+            }
+        }
+    })
+
+    test("deve retornar erro caso o password seja uma string vazia", async () => {
+        expect.assertions(2)
+        
+        try {
+            const input: ILoginInputDTO = {
+                email: "alice@gmail.com",
+                password: ""
+            }
+
+            await userBusiness.login(input)
+        } catch (error: unknown) {
+            if (error instanceof BaseError) {
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Invalid 'password' parameter: minimum 6 characters")
             }
         }
     })

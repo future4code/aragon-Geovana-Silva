@@ -52,13 +52,24 @@ export interface ICreateProductInputDTO {
     tags: string[]
 }
 
-export interface ICreateProductOutputDTO {
-    message: string,
-    product: Product
+export interface ICreateProductDBTO {
+    id: string,
+    name: string
+}
+
+export interface ICreateTagInputDTO {
+    id: string,
+    product_id: string,
+    tag_id: string
 }
 
 export interface IGetProductsOutput {
     product: Product[]
+}
+
+export interface IGetProductsSearchOutputDTO {
+    message: string,
+    products: any
 }
 
 export interface IGetProductsDB {
@@ -74,4 +85,4 @@ export interface IGetProductsInputDBTO {
     sort:  string,
     limit: string,
     page: string
-}
+} 

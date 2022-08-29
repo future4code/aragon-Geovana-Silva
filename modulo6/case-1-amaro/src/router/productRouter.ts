@@ -12,10 +12,11 @@ const productController = new ProductController(
     new ProductBusiness(
         new ProductDatabase(),
         new IdGenerator(),
-        new HashManager(),
         new Authenticator()
     )
 )
 
 productRouter.get("/", productController.getProducts)
+productRouter.get("/", productController.searchProduct)
+productRouter.post("/", productController.createProduct)
 

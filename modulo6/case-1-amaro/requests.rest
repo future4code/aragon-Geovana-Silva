@@ -21,4 +21,18 @@ Content-Type: application/json
 }
 
 ### 4) Get products
-GET http://localhost:3003/products?order=tag&sort=asc
+GET http://localhost:3003/products?order=name&sort=asc
+
+### 5) Search products
+GET http://localhost:3003/products?search=8310
+
+### 6) Create products
+POST http://localhost:3003/products
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkYTc5NWRhLTQ1MWItNGJkNS1iNDU0LTk4NmFiMmNmMjgzZiIsImlhdCI6MTY2MTcxMzMyOCwiZXhwIjoxNjYxNzk5NzI4fQ.FzEgDDf39SdexNHuZ8Kh__1lRCDmQFiR19CbBklFctM
+Content-Type: application/json
+
+{
+    "name": "Jaqueta Slytherin",
+    "tags": ["102", "113"]
+}
+
