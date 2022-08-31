@@ -17,6 +17,7 @@ h1{
 p{
     width: 70%;
     font-size: 25px;
+    color: #2E318A;
 }
 button{
     color: #fff;

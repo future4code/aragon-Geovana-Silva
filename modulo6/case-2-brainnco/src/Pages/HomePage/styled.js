@@ -4,14 +4,13 @@ export const Container = styled.div`
     width: 100%;
     height:100vh;
 `
-export const Main = styled.div`
+export const MainPage = styled.div`
     width: 100%;
     height:100vh;
     display: grid;
     grid-template-columns: 2fr 4fr;
 @media screen and (max-width: 960px){
     display: flex;
-    flex-direction: column;
 }
 `
 export const SectionRight = styled.div`
@@ -26,7 +25,7 @@ export const SectionRight = styled.div`
     margin-top: 600px;
 }
 ul{       
-     width: 65%;
+    width: 65%;
     height: 70vh;
     display: grid;
     padding: 5px;
@@ -98,7 +97,7 @@ span {
     font-size: 1.5rem;
     line-height: 37px;
     color: #FFFFFF; 
- @media screen and (max-width: 960px){
+@media screen and (max-width: 960px){
     margin: 10px;
 }
 }

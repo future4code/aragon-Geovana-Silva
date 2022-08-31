@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'moment/locale/pt-br'
-import Logo from '../../Assets/logo.png'
-import { BASE_URL } from '../../Constants/Urls'
-import { colors } from '../../Constants/Colors'
+import Logo from '../../Assets/Logo.png'
+import { BASE_URL } from '../../Constants/links'
+import { colors } from '../../Constants/colors'
 import useRequestData from '../../Hooks/UseRequestData'
-import Background from '../../Components/Background/Background'
-import { Container, Main, SectionRight, Info, Select, LogoAlign, Footer, P } from "./Styled"
+import Background from '../../Components/Background'
+import { Container, MainPage, SectionRight, Info, Select, LogoAlign, Footer, P } from "./styled"
 
-export default HomePage = () => {
+const HomePage = () => {
     const [lotteries] = useRequestData([], `${BASE_URL}/loterias`)
     const [contests] = useRequestData([], `${BASE_URL}/loterias-concursos`)
     const [raffleId, setRaffleId] = useState([])
     const [selectValue, setSelectValue] = useState("0")
 
     const contestId = contests.filter((lot) => lot.loteriaId == selectValue).map((lot) => lot.concursoId)
-    const color = colors.filter((lot) => lot.id == selectValue).map((lot) => lot.color)
+    // const color = colors.filter((lot) => lot.id == selectValue).map((lot) => lot.color)
+    // console.log(color)
 
     useEffect(() => {
         axios
@@ -29,27 +30,25 @@ export default HomePage = () => {
             })
     }, [selectValue])
 
-    return(
+    return (
         <Container>
-            <Main>
-                <Background fill={color}/>
+            <MainPage>
+                <Background/>
+                {/* fill={color} */}
                 <Info>
                     <Select value={selectValue} onChange={e => setSelectValue(e.target.value)}>
-                        {lotteries.map((lot) => (
-                            <option value={lot.id} key={lot.id}>
-                                {lot.nome.toUpperCase()}
-                            </option>))}
+                        {lotteries.map((lot) => (<option value={lot.id} key={lot.id}>{lot.nome.toUpperCase()}</option>))}
                     </Select>
 
                     {raffleId.map(lot => (
                         <>
                             <LogoAlign>
-                                <img src={Logo} alt="Logo"/>
+                                <img src={Logo} alt="Logo" />
                                 {colors.filter((lot) => lot.id == selectValue).map((lot) => (<span>{lot.name.toLocaleUpperCase()}</span>))}
                             </LogoAlign>
 
                             <Footer>
-                                <p> CONCURSO </p><span>{lot.id} - {moment(`${lot.data}`).format(`L`)}</span>
+                                <p> CONCURSO </p> <span>{lot.id} - {moment(`${lot.data}`).format('L')} </span>
                             </Footer>
                         </>
                     ))}
@@ -65,7 +64,9 @@ export default HomePage = () => {
                     </ul>
                     <P> Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA. </P>
                 </SectionRight>
-            </Main>
+            </MainPage>
         </Container>
     )
 }
+
+export default HomePage

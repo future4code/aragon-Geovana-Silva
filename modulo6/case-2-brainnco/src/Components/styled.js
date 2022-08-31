@@ -8,3 +8,7 @@ export const Main = styled.div`
     position: absolute;
 }
 `
+
+// export const MainDiv = styled.div`
+//     background-color: #541;
+// `

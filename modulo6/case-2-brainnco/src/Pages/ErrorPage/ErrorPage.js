@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { goToHome } from '../../Routes/Coordinates'
-import Erro from '../../Assets/404.png'
-import { DivContainer, DivText, Img } from './Styled'
+import Erro from '../../Assets/Error.png'
+import { DivContainer, DivText, Img } from './styled'
 
 const ErrorPage = () => {
     const Navigate = useNavigate()
