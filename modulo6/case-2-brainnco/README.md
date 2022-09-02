@@ -3,7 +3,7 @@
 Neste site você pode acessar os resultados da loteria como mega-sena, lotomania, lotofácil, quina, timemania, etc. Percebe-se que cada seleção que você faz, o background muda de cor e os números também. 
 
 ### Layout do site
-<img src="src/Img/Site.jpeg" height="700px"/>
+<img src="src/Img/Site.jpeg" height="650px"/>
 
 ### Publicação 🎨
 Projeto Case - BrainnCo publicado na plataforma surge:
