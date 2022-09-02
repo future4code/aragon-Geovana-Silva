@@ -55,7 +55,7 @@ li{
 `
 export const Select = styled.select`
     color: black;
-    padding: 10px;
+    padding: 12px;
     border-radius: 9px;
     border: 0;
     outline: none;
