@@ -1,0 +1,43 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Signup
+POST http://localhost:3003/users/signup 
+Content-Type: application/json
+
+{
+    "name": "Geovana",
+    "email": "geovana@gmail.com",
+    "password": "geo787878"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "geovana@gmail.com",
+    "password": "geo787878"
+}
+
+### Create shows
+POST http://localhost:3003/shows
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls 
+Content-Type: application/json
+
+{
+    "band": "Linkin Park",
+    "starts_at": "2022/12/08"
+}
+
+### Get shows
+GET http://localhost:3003/shows
+
+### Reservation tickets
+POST http://localhost:3003/shows/tickets/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls
+
+### Remove tickets
+DELETE http://localhost:3003/shows/tickets/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4ZWQ0Njc0LWZlZTctNDQ2YS05OWYxLTcyY2M4MjY1OTA0ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEwMjIzNzcsImV4cCI6MTY2MTEwODc3N30.b3V8Pm5vtT069qd9F_nJ4wIquIDluBViT7CLQI-M_ls
+
