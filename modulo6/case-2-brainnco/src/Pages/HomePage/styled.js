@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
     width: 100%;
     height:100vh;
+    background-color: #EFEFEF;
 `
 export const MainPage = styled.div`
     width: 100%;
@@ -45,8 +46,8 @@ li{
     list-style: none;
     border: 0;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     justify-content: center;
     align-items: center;
     margin: 5px;

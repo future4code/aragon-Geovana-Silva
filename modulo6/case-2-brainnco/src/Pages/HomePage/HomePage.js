@@ -4,7 +4,7 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 import Logo from '../../Assets/Logo.png'
 import { BASE_URL } from '../../Constants/links'
-import { colors } from '../../Constants/colors'
+import { colors } from '../../Constants/changeColors'
 import useRequestData from '../../Hooks/UseRequestData'
 import Background from '../../Components/Background'
 import { Container, MainPage, SectionRight, Info, Select, LogoAlign, Footer, P } from "./styled"
@@ -16,8 +16,7 @@ const HomePage = () => {
     const [selectValue, setSelectValue] = useState("0")
 
     const contestId = contests.filter((lot) => lot.loteriaId == selectValue).map((lot) => lot.concursoId)
-    // const color = colors.filter((lot) => lot.id == selectValue).map((lot) => lot.color)
-    // console.log(color)
+    const color = colors.filter((lot) => lot.id == selectValue).map((lot) => lot.color)
 
     useEffect(() => {
         axios
@@ -33,8 +32,7 @@ const HomePage = () => {
     return (
         <Container>
             <MainPage>
-                <Background/>
-                {/* fill={color} */}
+                <Background fill={color}/>
                 <Info>
                     <Select value={selectValue} onChange={e => setSelectValue(e.target.value)}>
                         {lotteries.map((lot) => (<option value={lot.id} key={lot.id}>{lot.nome.toUpperCase()}</option>))}

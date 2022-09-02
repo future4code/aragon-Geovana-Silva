@@ -1,6 +1,6 @@
-export const colors = (selectValue) => {
+export const colors1 = (selectValue) => {
 
-    if(selectValue == `mega-sena`){
+if(selectValue == `mega-sena`){
     return {color: "#6BEFA3"}
 }
 
