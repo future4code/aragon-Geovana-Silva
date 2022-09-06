@@ -24,7 +24,7 @@ export class UserDatabase extends BaseDatabase {
         return result[0]
     }
 
-    public createUser = async (user: User) => {
+    public createUser = async (user: User): Promise<void> => {
         const userDB = this.toUserDBModel(user)
 
         await BaseDatabase
