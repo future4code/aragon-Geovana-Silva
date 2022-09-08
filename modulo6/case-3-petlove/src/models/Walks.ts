@@ -1,18 +1,18 @@
 export enum STATUS {
     PENDING = "PENDING",
-    INPROGRESS = "IN PROGRESS",
+    INPROGRESS = "INPROGRESS",
     CONCLUDED = "CONCLUDED"
 }
 
 export enum DURATION {
     MEIAHORA = "30",
-    HORA = "60",
+    HORA = "60"
 }
 
 export interface IWalkDB {
     id: string,
     status: STATUS,
-    appointment_date: string,
+    appointment_date: Date,
     price: number,
     duration: DURATION,
     latitude: number,
@@ -26,9 +26,9 @@ export class Walk {
     constructor(
         private id: string,
         private status: STATUS,
-        private appointment_date: string,
+        private appointment_date: Date,
         private price: number,
-        private duration: string,
+        private duration: DURATION,
         private latitude: number,
         private longitude: number,
         private number_of_pets: number,
@@ -85,4 +85,69 @@ export class Walk {
     public getEndTime() {
         return this.end_time
     }
+
+    public setId = (newId: string) => {
+        this.id = newId
+    }
+
+    public setStatus = (newStatus: STATUS) => {
+        this.status = newStatus
+    }
+
+    public setAppointmentDate = (newAppointmentDate: Date) => {
+        this.appointment_date = newAppointmentDate
+    }
+
+    public setPrice = (newPrice: number) => {
+        this.price = newPrice
+    }
+
+    public setDuration = (newDuration: DURATION) => {
+        this.duration = newDuration
+    }
+
+    public setLatitude = (newLatitude: number) => {
+        this.latitude = newLatitude
+    }
+
+    public setLongitude = (newLongitude: number) => {
+        this.longitude = newLongitude
+    }
+
+    public setNumberOfPets = (newNumberOfPets: number) => {
+        this.number_of_pets = newNumberOfPets
+    }
+
+    public setStartTime = (newStartTime: string) => {
+        this.start_time = newStartTime
+    }
+
+    public setEndTime = (newEndTime: string) => {
+        this.end_time = newEndTime
+    }
+}
+
+export interface ICreateWalkInputDTO {
+    token: string,
+    appointment_date: Date,
+    price: number,
+    duration: DURATION,
+    latitude: number,
+    longitude: number,
+    number_of_pets: number,
+    start_time: string,
+    end_time: string
+}
+
+export interface ICreateWalkInputDBDTO {
+    id: string,
+    status: STATUS,
+    appointment_date: Date,
+    price: number,
+    duration: DURATION,
+    latitude: number,
+    longitude: number,
+    number_of_pets: number,
+    start_time: string,
+    end_time: string
 }

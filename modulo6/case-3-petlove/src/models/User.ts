@@ -60,3 +60,24 @@ export class User {
         this.role = newRole
     }
 }
+
+export interface ISignupInputDTO {
+    name: string,
+    email: string,
+    password: string
+}
+
+export interface ISignupOutputDTO {
+    message: string,
+    token: string
+}
+
+export interface ILoginInputDTO {
+    email: string,
+    password: string
+}
+
+export interface ILoginOutputDTO {
+    message: string,
+    token: string
+} 

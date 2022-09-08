@@ -29,7 +29,7 @@ export const tours: IWalkDB[] = [
     {
         id: "201",
         status: STATUS.PENDING,
-        appointment_date: "2022/08/05",
+        appointment_date: new Date("2022/09/05"),
         price: 25,
         duration: DURATION.MEIAHORA,
         latitude: -19.931842,
@@ -41,7 +41,7 @@ export const tours: IWalkDB[] = [
     {
         id: "202",
         status: STATUS.PENDING,
-        appointment_date: "2022/08/04",
+        appointment_date: new Date("2022/09/04"),
         price: 40,
         duration: DURATION.MEIAHORA,
         latitude: -19.953759,
@@ -53,7 +53,7 @@ export const tours: IWalkDB[] = [
     {
         id: "203",
         status: STATUS.INPROGRESS,
-        appointment_date: "2022/08/06",
+        appointment_date: new Date("2022/09/06"),
         price: 55,
         duration: DURATION.HORA,
         latitude: -19.957267,
@@ -65,7 +65,7 @@ export const tours: IWalkDB[] = [
     {
         id: "204",
         status: STATUS.CONCLUDED,
-        appointment_date: "2022/08/03",
+        appointment_date: new Date("2022/09/03"),
         price: 75,
         duration: DURATION.HORA,
         latitude: -19.958256,

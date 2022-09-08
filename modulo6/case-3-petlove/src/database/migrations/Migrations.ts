@@ -43,12 +43,12 @@ class Migrations extends BaseDatabase {
             status ENUM("PENDING", "INPROGRESS", "CONCLUDED") DEFAULT "PENDING",
             appointment_date DATE NOT NULL,
             price INT NOT NULL,
-            duration ENUM("MEIAHORA", "HORA"),
+            duration ENUM("30", "60"),
             latitude INT NOT NULL,
             longitude INT NOT NULL,
             number_of_pets INT NOT NULL,
             start_time VARCHAR(5) NULL,
-            end_time VARCHAR(5) NOT NULL,
+            end_time VARCHAR(5) NOT NULL
         );
         `)
     }
