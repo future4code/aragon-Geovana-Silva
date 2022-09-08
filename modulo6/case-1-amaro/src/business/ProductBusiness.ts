@@ -56,6 +56,7 @@ export class ProductBusiness {
     }
 
     public searchProduct = async (search: string | undefined) => {
+        // const {search} = search
         if(!search){
             throw new RequestError(`Type in the search which product you want to search`)
         }
