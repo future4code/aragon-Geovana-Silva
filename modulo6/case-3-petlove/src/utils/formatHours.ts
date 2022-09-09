@@ -19,7 +19,7 @@ export class FormatHours {
 
         var minute = Math.floor((seg % 3600 / 60))
         var minuteString = minute.toString()
-        
+
         var second = ((seg%3600)%60)
         var secondString = second.toString()
 
@@ -27,14 +27,14 @@ export class FormatHours {
             if(Number(isNumber) <= 9){
                 var isToNumber = "0" + isNumber
             }
-            
+
             if(Number(isNumber) === 0){
                 var isToNumber = "00"
             }
 
             return isToNumber;
         }
-        
+
         var hours = twoHouses(hourString) + ":" + twoHouses(minuteString) + ":" + twoHouses(secondString) 
         return hours;
     }

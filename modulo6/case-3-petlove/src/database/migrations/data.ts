@@ -1,5 +1,5 @@
-import { IUserDB, USER_ROLES } from "../../models/User"
 import { DURATION, IWalkDB, STATUS } from "../../models/Walks"
+import { IUserDB, USER_ROLES } from "../../models/User"
 
 export const users: IUserDB[] = [
     {

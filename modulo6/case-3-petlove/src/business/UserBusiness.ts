@@ -15,7 +15,7 @@ export class UserBusiness {
         private hashManager: HashManager,
         private authenticator: Authenticator
     ) {}
-
+    
     public signup = async (input: ISignupInputDTO) => {
         const { name, email, password } = input
 

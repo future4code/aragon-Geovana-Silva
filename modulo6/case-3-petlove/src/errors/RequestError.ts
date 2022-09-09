@@ -2,7 +2,7 @@ import { BaseError } from "./BaseError";
 
 export class RequestError extends BaseError {
     constructor(
-        message: string = "Invalid requisition"
+        message: string = "Requisição inválida"
     ) {
         super(400, message)
     }

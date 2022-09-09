@@ -1,9 +1,8 @@
 import { WalkDatabase } from "../database/WalkDatabase";
+import { ConflictError } from "../errors/ConflictError";
+import { NotFoundError } from "../errors/NotFoundError";
 import { RequestError } from "../errors/RequestError";
-import { UnauthorizedError } from "../errors/UnauthorizedError";
-import { DURATION, ICreateWalkInputDBDTO, ICreateWalkInputDTO, ICreateWalkOutputDTO, IWalkDB, STATUS, Walk } from "../models/Walks";
-import { Authenticator } from "../services/Authenticator";
-import { HashManager } from "../services/HashManager";
+import { DURATION, ICreateWalkInputDBDTO, ICreateWalkInputDTO, ICreateWalkOutputDTO, IGetWalksDB, IGetWalksInputDBTO, IGetWalksOutputDTO, IUpdateStatusWithEndTimeInputDTO, IUpdateStatusWithStartTimeInputDTO, IWalkDB, STATUS, Walk } from "../models/Walks";
 import { IdGenerator } from "../services/IdGenerator";
 import { CalculatePrice } from "../utils/calculatePrice";
 import { FormatHours } from "../utils/formatHours"
@@ -12,14 +11,12 @@ export class WalkBusiness {
     constructor(
         private walkDatabase: WalkDatabase,
         private idGenerator: IdGenerator,
-        private authenticator: Authenticator,
         private formatHours: FormatHours,
         private calculatePrice: CalculatePrice
     ) { }
 
     public createWalk = async (input: ICreateWalkInputDTO) => {
         const {
-            token,
             appointment_date,
             duration,
             latitude,
@@ -28,11 +25,6 @@ export class WalkBusiness {
             start_time,
             end_time 
         } = input
-
-        const payload = this.authenticator.getTokenPayload(token)
-        if(!payload){
-            throw new UnauthorizedError("Invalid or missing token")
-        }
 
 //FAZER O RESTO DAS VALIDAÇÕES
 
@@ -54,8 +46,8 @@ export class WalkBusiness {
 
         const id: string = this.idGenerator.generate()
 
-        const date: Date = new Date(appointment_date)
         const isStatus: STATUS = STATUS.PENDING
+
         const startTime: any = this.formatHours.formatStringHours(start_time)
         const endTime: any = this.formatHours.formatStringHours(end_time)
         const isPrice: number = this.calculatePrice.calculatePrice(number_of_pets, duration)
@@ -63,7 +55,7 @@ export class WalkBusiness {
         const walk: ICreateWalkInputDBDTO = {
             id: id,
             status: isStatus,
-            appointment_date: date,
+            appointment_date: appointment_date,
             price: isPrice,
             duration: duration,   
             latitude: latitude,
@@ -72,6 +64,21 @@ export class WalkBusiness {
             start_time: startTime,
             end_time: endTime
         }
+
+        // const walk = new Walk (
+        //     id,
+        //     isStatus,
+        //     appointment_date,
+        //     isPrice,
+        //     duration,
+        //     latitude,
+        //     longitude,
+        //     number_of_pets,
+        //     startTime,
+        //     endTime
+        // )
+
+//NÃO ESTÁ FORMATANDO AS HORAS!!!
 
         await this.walkDatabase.createWalk(walk)
 
@@ -83,5 +90,103 @@ export class WalkBusiness {
         return response
     }
 
-//CRIAR O GETWALKS E ATUALIZAÇÃO DE STATUS
+    public updateStatusWithStartTime = async (input: IUpdateStatusWithStartTimeInputDTO) => {
+        const{ id, start_time } = input
+
+        if(start_time.length !== 8){
+            throw new RequestError("Enter a valid time!")
+        }
+
+        const findWalkId = await this.walkDatabase.getWalkById(id)
+        const status = findWalkId.status
+        if(status !== STATUS.INPROGRESS){
+            throw new ConflictError("Has this tour already started or has it already ended")
+        }
+        if(!findWalkId){
+            throw new NotFoundError("This tour does not exist!")
+        }
+        if(findWalkId){
+            await this.walkDatabase.isStartWalk(start_time, id)
+        }
+    }
+
+    public updateStatusWithEndTime = async (input: IUpdateStatusWithEndTimeInputDTO) => {
+        const { id, end_time } = input
+
+        if(end_time.length !== 8){
+            throw new RequestError("Enter a valid time!")
+        }
+
+        const findWalkId = await this.walkDatabase.getWalkById(id)
+        const status = findWalkId.status
+
+        const duration = Number(findWalkId.duration)
+        const startTime = findWalkId.start_time
+
+        const startTimeFormated = this.formatHours.formatStringHours(startTime)
+        const endTimeFormated = this.formatHours.formatStringHours(end_time)
+        console.log(endTimeFormated - startTimeFormated)
+
+        if(status !== STATUS.PENDING){
+            throw new ConflictError("This tour hasn't started yet!")
+        }
+
+        if(duration === 30 && (endTimeFormated - startTimeFormated) < (30*60) ){
+            throw new RequestError("This tour did not last long!")
+        }
+        if(duration === 60 && (endTimeFormated - startTimeFormated) < (60*60) ){
+            throw new RequestError("This tour did not last long!")
+        }
+        if(endTimeFormated < startTimeFormated){
+            throw new RequestError("There is no way to finish the race before the start time!")
+        }
+        
+        if(!findWalkId){
+            throw new NotFoundError("This tour does not exist!")
+        }
+        if(findWalkId){
+            await this.walkDatabase.isStartWalk(end_time, id)
+        }
+    }
+
+    public getWalks = async (input: IGetWalksInputDBTO): Promise<IGetWalksOutputDTO> => {
+        const search = input.search
+        const order = input.order || "name"
+        const sort = input.sort || "ASC"
+        const limit = Number(input.limit) || 10
+        const page = Number(input.page) || 1
+        const offset = limit * (page - 1)
+
+        const getWalksInput: IGetWalksDB = {
+            search,
+            order,
+            sort,
+            limit,
+            page,
+            offset
+        }
+
+        const walkDB: IWalkDB[] = await this.walkDatabase.getWalks(getWalksInput)
+
+        const walks = walkDB.map(walkDB => {
+            return new Walk(
+                walkDB.id,
+                walkDB.status,
+                walkDB.appointment_date,
+                walkDB.price,
+                walkDB.duration,
+                walkDB.latitude,
+                walkDB.longitude,
+                walkDB.number_of_pets,
+                walkDB.start_time,
+                walkDB.end_time
+            )
+        })
+
+        const response: IGetWalksOutputDTO = {
+            tours: walks
+        }
+
+        return response
+    }
 }

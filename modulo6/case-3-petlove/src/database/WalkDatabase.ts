@@ -1,4 +1,4 @@
-import { ICreateWalkInputDBDTO, ICreateWalkInputDTO, IGetWalksInputDTO, IWalkDB, Walk } from "../models/Walks";
+import { ICreateWalkInputDBDTO, IGetWalksDB, IWalkDB} from "../models/Walks";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class WalkDatabase extends BaseDatabase {
@@ -45,7 +45,7 @@ export class WalkDatabase extends BaseDatabase {
         return result[0]
     }
 
-    public getWalks = async (input: IGetWalksInputDTO): Promise<IWalkDB[] | undefined> => {
+    public getWalks = async (input: IGetWalksDB): Promise<IWalkDB[] | undefined> => {
         const {
             search,
             order,
@@ -58,8 +58,6 @@ export class WalkDatabase extends BaseDatabase {
             .connection(WalkDatabase.TABLE_WALKS)
             .select()
             .where(`id`, `LIKE`, `%${search}%`)
-            .orWhere(`longitude`, `LIKE`, `%${search}%`)
-            .orWhere(`latitude`, `LIKE`, `%${search}%`)
             .orderBy(order, sort)
             .limit(limit)
             .offset(offset)

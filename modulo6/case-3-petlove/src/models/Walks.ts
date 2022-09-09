@@ -28,24 +28,14 @@ export class Walk {
         private status: STATUS,
         private appointment_date: Date,
         private price: number,
-        private duration: DURATION,
+        private duration: string,
         private latitude: number,
         private longitude: number,
         private number_of_pets: number,
         private start_time: string,
         private end_time: string
-    ){
-        this.id = id,
-        this.status = status,
-        this.appointment_date = appointment_date,
-        this.price = price,
-        this.duration = duration,
-        this.latitude = latitude,
-        this.longitude = longitude,
-        this.number_of_pets = number_of_pets,
-        this.start_time = start_time,
-        this.end_time = end_time
-    }
+    ){}
+
     public getId() {
         return this.id
     }
@@ -128,7 +118,6 @@ export class Walk {
 }
 
 export interface ICreateWalkInputDTO {
-    token: string,
     appointment_date: Date,
     duration: DURATION,
     latitude: number,
@@ -156,11 +145,34 @@ export interface ICreateWalkOutputDTO {
     walk: ICreateWalkInputDBDTO
 }
 
-export interface IGetWalksInputDTO {
+export interface IGetWalksOutputDTO {
+    tours: Walk[]
+}
+
+export interface IGetWalksDB {
     search: string,
     order: string,
     sort: string,
     limit: number,
     page: number,
     offset: number
+}
+
+export interface IGetWalksInputDBTO {
+    search: string,
+    order: string,
+    sort:  string,
+    limit: string,
+    page: string
+} 
+
+
+export interface IUpdateStatusWithStartTimeInputDTO {
+    id: string,
+    start_time: string
+}
+
+export interface IUpdateStatusWithEndTimeInputDTO {
+    id: string,
+    end_time: string
 }
