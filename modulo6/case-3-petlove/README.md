@@ -1,4 +1,4 @@
-# Amaro Fashion Back-end Challenge
+# PetLove Back-end Challenge
 
 <p align="center">
   <img src="https://media-exp1.licdn.com/dms/image/D4D1BAQFwqErJfcg5RA/company-background_10000/0/1654087705683?e=2147483647&v=beta&t=Hwprzudi5c4T3sAjFCSs477Mhun73zOMW5n8FrenFVk" alt="Amaro Fashion Logo" />
