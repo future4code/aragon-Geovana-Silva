@@ -81,6 +81,7 @@ Aqui você encontra todos os projetos realizados durante o curso. Espero que gos
 |
 ├── modulo6
 │   ├── case-1-amaro
-│   └── case-2-brainnco
+│   ├── case-2-brainnco
+│   └── case-3-petlove
 .
 ```
