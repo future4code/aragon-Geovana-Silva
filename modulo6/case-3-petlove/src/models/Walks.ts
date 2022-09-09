@@ -130,7 +130,6 @@ export class Walk {
 export interface ICreateWalkInputDTO {
     token: string,
     appointment_date: Date,
-    price: number,
     duration: DURATION,
     latitude: number,
     longitude: number,
@@ -150,4 +149,18 @@ export interface ICreateWalkInputDBDTO {
     number_of_pets: number,
     start_time: string,
     end_time: string
+}
+
+export interface ICreateWalkOutputDTO {
+    message: string,
+    walk: ICreateWalkInputDBDTO
+}
+
+export interface IGetWalksInputDTO {
+    search: string,
+    order: string,
+    sort: string,
+    limit: number,
+    page: number,
+    offset: number
 }

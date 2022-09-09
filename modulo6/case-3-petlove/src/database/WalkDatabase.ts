@@ -1,4 +1,4 @@
-import { ICreateWalkInputDBDTO, ICreateWalkInputDTO, IWalkDB, Walk } from "../models/Walks";
+import { ICreateWalkInputDBDTO, ICreateWalkInputDTO, IGetWalksInputDTO, IWalkDB, Walk } from "../models/Walks";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class WalkDatabase extends BaseDatabase {
@@ -21,5 +21,59 @@ export class WalkDatabase extends BaseDatabase {
         await BaseDatabase
             .connection(WalkDatabase.TABLE_WALKS)
             .insert(walkDB)
+    }
+
+    public isStartWalk = async (start: string, id: string): Promise<undefined> => {
+        const result = await BaseDatabase.connection.raw(`
+            UPDATE PetLove_Walks
+            SET start_time = '${start}',
+            status = "INPROGRESS"
+            WHERE id = '${id}'
+        `);
+
+        return result[0]
+    }
+
+    public isEndWalk = async (end: string, id: string): Promise<undefined> => {
+        const result = await BaseDatabase.connection.raw(`
+            UPDATE PetLove_Walks
+            SET end_time = '${end}',
+            status = "CONCLUDED"
+            WHERE id = '${id}'
+        `);
+
+        return result[0]
+    }
+
+    public getWalks = async (input: IGetWalksInputDTO): Promise<IWalkDB[] | undefined> => {
+        const {
+            search,
+            order,
+            sort,
+            limit,
+            offset
+        } = input
+        
+        const result: IWalkDB[] = await BaseDatabase
+            .connection(WalkDatabase.TABLE_WALKS)
+            .select()
+            .where(`id`, `LIKE`, `%${search}%`)
+            .orWhere(`longitude`, `LIKE`, `%${search}%`)
+            .orWhere(`latitude`, `LIKE`, `%${search}%`)
+            .orderBy(order, sort)
+            .limit(limit)
+            .offset(offset)
+
+        return result
+    }
+
+    public getWalkById = async (id: string): Promise<IWalkDB | undefined> => {
+        const [result] = await BaseDatabase
+            .connection(WalkDatabase.TABLE_WALKS)
+            .select()
+            .where(`id`, `LIKE`, `${id}`)
+            
+
+        return result
     }
 }

@@ -1,7 +1,7 @@
 import { WalkDatabase } from "../database/WalkDatabase";
 import { RequestError } from "../errors/RequestError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
-import { DURATION, ICreateWalkInputDBDTO, ICreateWalkInputDTO, IWalkDB, STATUS, Walk } from "../models/Walks";
+import { DURATION, ICreateWalkInputDBDTO, ICreateWalkInputDTO, ICreateWalkOutputDTO, IWalkDB, STATUS, Walk } from "../models/Walks";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
@@ -12,7 +12,6 @@ export class WalkBusiness {
     constructor(
         private walkDatabase: WalkDatabase,
         private idGenerator: IdGenerator,
-        private hashManager: HashManager,
         private authenticator: Authenticator,
         private formatHours: FormatHours,
         private calculatePrice: CalculatePrice
@@ -22,18 +21,20 @@ export class WalkBusiness {
         const {
             token,
             appointment_date,
-            price,
             duration,
             latitude,
             longitude,
             number_of_pets,
             start_time,
-            end_time } = input
+            end_time 
+        } = input
 
         const payload = this.authenticator.getTokenPayload(token)
-        if (!payload) {
+        if(!payload){
             throw new UnauthorizedError("Invalid or missing token")
         }
+
+//FAZER O RESTO DAS VALIDAÇÕES
 
         if(start_time === end_time){
             throw new RequestError("The start time cannot be the same as the end time!")
@@ -51,22 +52,36 @@ export class WalkBusiness {
             throw new RequestError("This duration time is invalid!")
         }
 
-        const id = this.idGenerator.generate()
+        const id: string = this.idGenerator.generate()
 
-        const date = new Date(appointment_date)
-
-        const status = STATUS.PENDING
-
-        const startTime = this.formatHours.formatStringHours(start_time)
-        const endTime = this.formatHours.formatStringHours(end_time)
-        const isPrice = this.calculatePrice.calculatePrice(number_of_pets, duration)}
+        const date: Date = new Date(appointment_date)
+        const isStatus: STATUS = STATUS.PENDING
+        const startTime: any = this.formatHours.formatStringHours(start_time)
+        const endTime: any = this.formatHours.formatStringHours(end_time)
+        const isPrice: number = this.calculatePrice.calculatePrice(number_of_pets, duration)
 
         const walk: ICreateWalkInputDBDTO = {
-            id,
-            status,
-            date,
-            isPrice,
-
+            id: id,
+            status: isStatus,
+            appointment_date: date,
+            price: isPrice,
+            duration: duration,   
+            latitude: latitude,
+            longitude: longitude,
+            number_of_pets: number_of_pets,
+            start_time: startTime,
+            end_time: endTime
         }
+
+        await this.walkDatabase.createWalk(walk)
+
+        const response: ICreateWalkOutputDTO = {
+            message: "Walk created successfully!",
+            walk: walk
+        }
+
+        return response
     }
+
+//CRIAR O GETWALKS E ATUALIZAÇÃO DE STATUS
 }
