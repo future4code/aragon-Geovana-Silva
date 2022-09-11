@@ -60,15 +60,15 @@ DB_NAME = nome-do-banco-de-dados
 #### GET WALKS
 
 -   Method: `GET`
--   Path:`/products/?order=name&sort=asc`
--   Output: uma lista com todos os passeios.
+-   Path:`/walks/?order=name&sort=asc`
+-   Output: uma lista com todos os passeios
 
 #### CREATE WALKS
 
 -   Method: `POST`
--   Path:`/products`
--   Input: `name(string), tags(array de string)`
--   Output: retorna o passeio criado.
+-   Path:`/walks`
+-   Input: `appointment_date(string), duration(string), latitude(number), longitude(number), number_of_pets(number), start_time(string) e end_time(string)`
+-   Output: retorna o passeio criado
 
 ## Documentação:
 [Postman](---) Não foi realizado a documentação API devido aos erros
