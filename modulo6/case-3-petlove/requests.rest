@@ -1,0 +1,42 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Endpoint de signup
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Carla",
+    "email": "carla@gmail.com",
+    "password": "carla98989898"
+}
+//SIGNUP ESTÁ DANDO ERRO NO SISTEMA
+
+### Endpoint de login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "fulano@gmail.com",
+    "password": "qwerty00"
+}
+//LOGIN ESTÁ DANDO ERRO NO SISTEMA
+
+### Endpoint de criar passeios
+POST http://localhost:3003/walks 
+Content-Type: application/json
+
+{
+    "appointment_date": "30/09/2022",
+    "duration": "30",
+    "latitude": -19.885672,
+    "longitude": -44.003892,
+    "number_of_pets": 4,
+    "start_time": "13:00:00",
+    "end_time": "13:30:00"
+}
+//HORA NÃO SAI FORMATADA
+
+### Endpoint de buscar passeios
+GET http://localhost:3003/walks?search=202
+//ERRO DIRETO NO CATCH
